@@ -5,19 +5,36 @@ The Implementation of Trillia is language agnostic. It doesn't matter which lang
 The An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very low level, unrestrictive, and has many libraries and modules.
 Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling.
 
-Some notable features are:
+It's worth noting that some features like reactivity and threading are central to the language, but appear later in the overview because they require knowledge on other systems first.
+
+An Overview of the language:
 
 1. Whitespace
 Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. This ensures minimalism.
 If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use ; as an alternative. There are certain occations where ; is reccomended for clarity.
 If you wish to have a single statement be split across multiple lines, you can use ;; to nullify the \n new line character. This ensures that you can more easily represent matrixes in your code.
-Indented code is called subordinate code, and the code that is dedented above that subordinate code is called ordinate code. Indents are 4 spaces.
+Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
 
-2.0 Variable Assignment
+Whitespace is important, and enforced. To ensure maximal clarity, operations are split into different types.
+Binary operations require a space before and after them. a / b is allowed, but not a/ b, a /b or a/b.
+Suffixes must be attached to the end of what they modify. For example, attaching the % symbol to the end of a number will divide that number by 100. 10% returns 0.1.
+Prefixes must always be prepended to what they modify. For example the - symbol can be prepended to a variable to flip its sign. if x = 12, then -x is -12.
+
+2. Unified Assignment Operator
+In Trillia, the = sign is used for assignments of all objects.
+Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the = Assignment Operator.
+
+2.1 Variable Assignment
 Variables are assigned using a variable name, followed by the = sign, then the value you are assigning to it
 x = 10
 
-2.1 Strict Types and Sizes
+To swap two variables, you can use commas on both sides of the = sign
+a = 3
+b = 7
+a, b = b, a
+This swaps the value of a and b.
+
+2.2 Strict Types and Sizes
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
 int32 x = 10
 
@@ -32,14 +49,14 @@ scal64 x = 4800
 You can use the scal type without a size to explicitly state that a variable is intentionally dynamic type and size instead of being a hastily programmed prototype.
 scal x = "hello"
 
-2.2 Mutability
+2.3 Mutability
 There are four keywords that change which ways your data is allowed to be altered.
 The const keyword, alternatively written as constant, will prevent your data from being altered.
 The stat keyword, alternatively written as static, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
 The rel keyword, alternatively written as relative, will only allow your data to be relatively reassigned or altered, but not assigned.
 The mut keyword, alternatively written as mutable, will allow your data to be altered in all ways.
 
-2.3 Declarations
+2.4 Declarations
 If you wish to claim memory before assigning it a value, you can declare without assignment. It's reccomended that you use ; for clarity, signalling that you intentionally did not provide assignment.
 int32 x;
 
@@ -50,7 +67,7 @@ If you wish to cast the type and or size of a variable into another type, you ca
 nat32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
 
-2.4 Hard Variables
+2.5 Hard Variables
 Using the hard keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled X.tri, where X is the name of your program.
 If a hard variable is created, an X.trihard file will be created automatically to contain all hard variable data.
 Hard variables are much slower to assign or alter, but they are saved variables that don't require you to use read() or write()
@@ -92,6 +109,18 @@ Using the vec type, Trillia will create an array if possible, and a list if not.
 Using the array type, Trillia will attempt to create an array, and if the elements do not conform to the rules of arrays, an error will occur.
 Using the list type always creates a linked list.
 The thread type is a special type of vector. More about it later in the Threads section.
+
+Declaration is done using the [] symbols
+my_list = [1, 2, 3]
+array3 int32 my_array = [1, 2, 3]
+
+In Trillia, everything is an array. Let's restate that.
+In Trillia, everything is an array.
+Variables aren't technically arrays under the hood, but you can treat them like iterables with only one element. Everything can be treated like an array.
+You can also turn variables into true arrays very easily by using array methods on them
+x = 12
+(x)append(4)
+# now x = [12, 4]
 
 Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself, and specify their rules.
 There are many built-in functions that are best used for sets, such as union() or intersection(), and guidelines on which functions to use, but no hard rules.
@@ -297,11 +326,8 @@ a + 7 * 2
 This takes a, adds seven to it, then doubles it. That's the new value of a. If there are multiple variables on a line, such as in a * b, then only the leftmost variable is reassigned.
 
 5. Control Structures
-There are four types of control structures in Trillia:
-Branch
-Jump [fn(), continue, ]
-Loop [while, until, repeat, do]
-Exit [break, return]
+The six comparative operators are: =, !=, >, <, >=, and <=.
+These operators return True or False, and are used to interact most often with conditions.
 
 5.1 Branch Control Structures
 Trillia supports if, else, unless, and then.
@@ -347,6 +373,11 @@ if x = 3
     do some code
 ...
 
+The Ternary Operator
+Trillia has a very simple ternary operator.
+if a then b else c
+That's it, and it's no different in syntax than regular if else statements. You can use the unless keyword too.
+
 5.2 Reactive Branch Control Structures
 Trillia has signals. The when keyword allows you to set a condition that when True, jumps code execution to the when block's subordinate code.
 day = [`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`]
@@ -360,19 +391,121 @@ x = Saturday
 The when keyword requires {}s. The braces give signal lifetime. When you exit the braces, the condition is no longer being listened for.
 
 The when keyword can be paired with return. This means that, much like a function, you will be returned back to where you were when the when block was called.
+If when is not paired with a return keyword, it will implicitly resume code execution at the place it was where the when keyword was activated.
 when x = Saturday {
     print("Have a good weekend")
     return
 x = Saturday
 }
+You can also use the break keyword to break out of the when block early, starting from directly after the when block ends, rather than resuming.
 
-You can also use the break keyword to break out of the when block early, starting from directly after the when block ends.
+5.3 Loops
+In Trillia, there are some control keywords that create a loop.
+The repeat keyword is the simplest looping keyword. If given no value, it will repeat forever, or until the subordinate code encounters the break keyword
+repeat
+    a + 5
+This adds 5 to variable a infinitely
+
+repeat
+    a + 5
+    if a > 200
+        break
+This is a safer way to handle this.
+
+You can give a value to the repeat keyword to make it repeat a fixed number of times
+repeat 10
+    a + 2
+This loop repeats 10 times, then automatically ends.
+
+The repeat keyword is especially useful when you want to preserve D.R.Y. (Don't Repeat Yourself).
+
+The second and third looping keywords are while and until.
+The while keyword is the same as the if keyword except it creates a loop. Every time that loop starts over, the condition is asked again.
+The until keyword flips the condition's True and False. until is to while what unless is to if.
+while x > 10
+    x - 3
+
+until is_prime(number)
+    print(number)
+    number + 1
+
+The while and until keyword can be broken out of using the break keyword.
+If you use continue, on repeat, while, or until, it will jump back to the start of the loop, and re-ask the condition if there is one.
+
+The do keyword exists inside loops, and only gets triggered once by default. If you give it a value, then it will repeat that number of times.
+The do keyword will reset if the loop that it's in is broken out of.
+repeat 20
+    do 5
+        print("hello world")
+    print("memes are funny")
+The first five times, it will print hello world. And it will print memes are funny 20 times in total.
+
+Function calls are technically also control structures, but aren't usually thought of in that way.
+They unconditionally jump you to another part of the code, and then return you back to where you left off.
+In Trillia, you can use the break keyword on functions to make them behave similarly to a goto statement.
+
+6. Debugging
+The ? operator can be appended to a variable to track and print every change that happens to it from that point in the code onward.
+x = 3
+x?        # this line is used to explicitly track x
+while x != 1
+    if x /@ 2 then x / 2 else x * 3 + 1
+
+# This prints out:
+>>> while x != 1 where x = 3 returns True to while
+>>> if x /@ 2 where x = 3 returns False to if
+>>> else x * 3 + 1 where x = 3 relatively assigns x = 10
+>>> while x != 1 where x = 10 returns True to while
+>>> if x /@ 2 where x = 10 returns True to if
+>>> then x / 2 where x = 10 relatively assigns x = 5
+>>> while x != 1 where x = 5 returns True to while
+>>> if x /@ 2 where x = 5 returns False to if
+>>> else x * 3 + 1 where x = 5 relatively assigns x = 16
+>>> while x != 1 where x = 16 returns True to while
+>>> if x /@ 2 where x = 16 returns True to if
+>>> then x / 2 where x = 16 relatively assigns x = 8
+>>> while x != 1 where x = 8 returns True to while
+>>> if x /@ 2 where x = 8 returns True to if
+>>> then x / 2 where x = 8 relatively assigns x = 4
+>>> while x != 1 where x = 4 returns True to while
+>>> if x /@ 2 where x = 4 returns True to if
+>>> then x / 2 where x = 4 relatively assigns x = 2
+>>> while x != 1 where x = 2 returns True to while
+>>> if x /@ 2 where x = 2 returns True to if
+>>> then x / 2 where x = 2 relatively assigns x = 1
+>>> while x != 1 where x = 1 returns False to while
+It's very verbose, and goes through every change for which x is either queried or changed.
+
+Using the ? operator at the end of a line, with a space between it and the last object prints out every evaluation and change that occurs on that line.
+x = 3
+while x != 1
+    if x /@ 2
+    then x / 2 ?
+    else x * 3 + 1
+>>> then x / 2 where x = 10 relatively assigns x = 5
+>>> then x / 2 where x = 16 relatively assigns x = 8
+>>> then x / 2 where x = 8 relatively assigns x = 4
+>>> then x / 2 where x = 4 relatively assigns x = 2
+>>> then x / 2 where x = 2 relatively assigns x = 1
+
+If you want to monitor every line of code from a starting point to an end point, you can use the ?* *? debug brackets.
+They behave the same as the end of line ?.
+
+Using try and (catch??? , except???), you can make your program behave differently to avoid a crash.
+try x / y
+catch zero_division_error
+    print("invalid input")
+
+If your program has a compiler error, you can use catch + ignore to let your program run anyway.
+catch proven_pointer_cycle_error
+    ignore
 
 
 
 
 
 
+==================================================
 
 
 X Low Level Pointers, Addresses, etc
@@ -424,7 +557,9 @@ You can use @1234 to define a variable "at" address 1234.
 we can use usurp address and usurp &var
 we can use displace address and displace &var
 
-if a pointer points to a variable, and that variable gets freed, what should happen?
+if a pointer points to a variable, and that variable gets freed, what should happen? (depends on identity versus address)
+Identity pointer: Undefined. unsalvagable.
+Address pointer: Undefined. Given value when the address is given value.
 
 own()
 borrow()
@@ -443,13 +578,6 @@ Lazy Reactivity
 Cached Reactivity
 Signals
 
-Debugging + try catch
-
-The unified = sign
-    a, b = b, a #swap values just as in Lua.
-
-X Control Structures
-if, else, then, unless, keywords
 
 X Functions
 Right-Handed Functions
@@ -462,19 +590,15 @@ Parallel Threading
 Right handed and left handed threads
 const keyword makes variables shared. This is because const is read only.
 
-X Garbage Collection and Memory Management
-
-
 Guidelines and additional rules:
 Naming
-Whitespace for +X, +, and X+
 Standard library uses automatic imports as needed, everything else needs manual imports
 No OOP, no structs
 The Language on C
 
 
 
-X Automatic Garbage Collection: 
+X Automatic Garbage Collection + Memory Management:
 Trillia's GC is compile-time only.
 There is no extra overhead, no reference-tracking, except likely for pointers and reactives, which already have most of the reference-counter and reference tree systems already built-in to prevent cyclical dependencies.
 The GC collects only what data can be provably unneeded. It calculates this during compile time, and if it cannot prove that an object is able to safely be destroyed early, then the GC does nothing, and lets it be destroyed at the end of its scope naturally.
@@ -484,7 +608,6 @@ The runtime safety checker (RTS) handles all reactive objects, and frees them at
 The safety checker is needed to prevent cycles and other dangerous code, and it also just so happens that the same systems used for safety are also needed for GC of reactive objects.
 The RTS adds overhead, but it's not primarily a GC, and its GC processes don't add any extra overhead.
 This means that all GC in Trillia adds 0 extra overhead, and oftentimes due to memory allocation searches, Trillia's GC actually speeds up execution time very slightly instead of slowing it down.
-
 
 
 
