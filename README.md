@@ -21,11 +21,11 @@ Indented code is called "subordinate code", and the code that is dedented above 
 
 Whitespace is important and enforced. To ensure maximal clarity, operations are split into different categories:
 
-Binary operations require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+Binary Operations: require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
 
-Suffixes must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
+Suffix Unary Operations: must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
 
-Prefixes must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
+Prefix Unary Operations: must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
 In Trillia, the = sign is used for assignments of all objects.
