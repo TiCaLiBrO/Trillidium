@@ -11,7 +11,7 @@ It's worth noting that some features like reactivity and threading are central t
 
 An Overview of the language:
 
-1. Whitespace
+# 1. Whitespace
 
 Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. This ensures minimalism.
 If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use ; as an alternative. There are certain occations where ; is reccomended for clarity.
