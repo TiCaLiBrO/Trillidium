@@ -23,7 +23,7 @@ Binary operations require a space before and after them. a / b is allowed, but n
 Suffixes must be attached to the end of what they modify. For example, attaching the % symbol to the end of a number will divide that number by 100. 10% returns 0.1.
 Prefixes must always be prepended to what they modify. For example the - symbol can be prepended to a variable to flip its sign. if x = 12, then -x is -12.
 
-2. Unified Assignment Operator
+# 2. Unified Assignment Operator
 In Trillia, the = sign is used for assignments of all objects.
 Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the = Assignment Operator.
 
@@ -81,7 +81,7 @@ If you use hard + const, you get a literal value that is treated as a variable.
 hard const rat32 PI = 3.1415
 Here, the value of pi is stored in your program at compile time. It's very similar to #define in C.
 
-3.0 Types
+# 3. Types
 Different data types are used best for different tasks. 
 Trillia has four numeric types: nat, int, rat, and float. All of these are suffixed by the number of bits used to represent them.
 All of the numeric types are suffixed by the number of bits used to represent them. For example, natX is most often in the forms nat, nat0, nat8, nat16, nat32, and nat64.
@@ -136,7 +136,7 @@ The backticks are used in the same way as strings, but unlike strings, the entir
 The individual elements do not behave like numerics, but they can be accessed by index. Ultimately, you define the rules in which each symbol is used.
 For example, you cannot say apple + apple and expect orange to be the return value unless you specifically define that to be the case.
 
-4.0 Symbols and Operations
+# 4. Symbols and Operations
 Trillia makes use of keyboard symbols to perform common operations.
 
 4.1 Symbol Spacing
