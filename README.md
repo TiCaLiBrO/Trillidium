@@ -67,9 +67,13 @@ You can use the `scal` type without a size to explicitly state that a variable i
 2.3 Mutability
 
 There are four keywords that change which ways your data is allowed to be altered.
+
 The `const` keyword, alternatively written as `constant`, will prevent your data from being altered.
+
 The `stat` keyword, alternatively written as `static`, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
+
 The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
+
 The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default.
 
 2.4 Declarations
