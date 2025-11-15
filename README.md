@@ -19,7 +19,7 @@ There are certain occations where `;` is reccomended for clarity, such as declar
 If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can more easily represent matrixes in your code.
 Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
 
-Whitespace is important, and enforced. To ensure maximal clarity, operations are split into different categories:
+Whitespace is important and enforced. To ensure maximal clarity, operations are split into different categories:
 
 Binary operations require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
 
