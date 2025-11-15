@@ -1,6 +1,7 @@
 # Trillia
 Trillia is a computer programming language inspired by C, Python, Go, and Lua, with the purposes of ensuring maximal simplicity, readability, consistency, low-level speed, and rapidity of onboarding.
-The Implementation of Trillia is language agnostic. It doesn't matter which languages are used, and it also doesn't matter whether Trillia is transpiled, compiled, or interpreted, as long as it behaves deterministically.
+The Implementation of Trillia is language agnostic.
+It doesn't matter which languages are used, and it also doesn't matter whether Trillia is transpiled, compiled, or interpreted, as long as it behaves deterministically.
 An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very low-level, unrestrictive, and has many libraries and modules.
 Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling.
 
@@ -29,7 +30,8 @@ Prefix Unary Operations: must always be prepended to what they modify. For examp
 
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of all objects.
-Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the `=` Assignment Operator.
+Variables, Arrays and Lists, Enums, Dictionaries, Pointers and Reactives, Functions, and Threads are all given value using the `=` Assignment Operator.
+There are no objects in Trillia that can be assigned value without the Assignment Operator. And that list of objects is the entire list of all things that can be created in Trillia.
 
 2.1. Variable Assignment
 
@@ -91,11 +93,15 @@ If you wish to cast the type and or size of a variable into another type, you ca
     nat32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
 
-2.5 Hard Variables
+2.5 Hard Variables and Glass Variables
 
 Using the `hard` keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled `X.tri`, where X is the name of your program.
 If a hard variable is created, an `X.trihard` file will be created automatically to contain all hard variable data.
 Hard variables are much slower to assign or alter, but they are saved variables that don't require you to use `read()` or `write()`.
+
+===========================================================================================================================
+TALK ABOUT GLASS VARIABLES
+===========================================================================================================================
 
 A special case:
 
@@ -164,6 +170,11 @@ fruits = [`apple`, `orange`, `banana`, `plum`]
 The backticks are used in the same way as strings, but unlike strings, the entire word used is treated as a literal, individual characters cannot be indexed, and they take up far less memory than strings.
 The individual elements do not behave like numerics, but they can be accessed by index. Ultimately, you define the rules in which each symbol is used.
 For example, you cannot say apple + apple and expect orange to be the return value unless you specifically define that to be the case.
+
+3.4 Dictionaries
+================================= UNFINISHED ========================================
+
+
 
 # 4. Symbols and Operations
 Trillia makes use of keyboard symbols to perform common operations.
@@ -533,141 +544,288 @@ If your program has a compiler error, you can use catch + ignore to let your pro
 catch proven_pointer_cycle_error
     ignore
 
+Because many errors usually result in or are caused by Undefined values, and because Undefined returns Undefined when augmented, this can result in accumulation of Undefined variables.
+
+# 7. Reactive Variables
+There are four types of reactive variables in Trillia:
+
+Address Pointers: also called Raw Pointers, are the same as pointers in C. Unlike C, however, they are dereferenced by default.
+They point to an address of another variable or data structure, and return the value that's held there. Address Pointers are by far the rarest of the four reactives.
+Address Pointers are called using the `&:` prefix. You can read `&` as "Address" and `:` as "Pointer". It's literally read in code the same as it's named in English.
+x = &:y
+or alternatively:
+x &:= y
+This can be read as "x is an addres-pointer to y"
+
+Reactive Pointers: also called Identity Pointers, are similar to Address Pointers, except they never lose track of what they point to.
+If a data structure changes address, which is quite common during promotion or data-type change, this pointer is notified, and will reactively point to the new address.
+This type of reactive variable is much more common that the Address Pointer because it is much safer, and makes it much easier to maintain stable objects.
+Reactive Pointers are called using the `:` prefix.
+x = :y
+or alternatively:
+x := y
+This can be read as "x is a pointer to y" or "x points to y"
+Or, if you want to be more mathematical: "x is defined as y"
+
+Pointer Reactives: also called Lazy Reactives, are actually functions under the hood that re-evaluate every time they are called. They take up no register memory of their own.
+They are called Pointer Reactives because they appear nearly identical to Reactive Pointers, except they don't have an address.
+Pointer Reactives are called using the `:` prefix; the same as Reactive Pointers.
+x = :y + :z
+or alternatively:
+x := y + z
+The same syntax appears here as for Reactive Pointers, except there's no reason a programmer would need to re-evaluate for a single value like this.
+As a result, the pointer form is single-dependency only, while the reactive form is multiple-dependencies only.
+Also, notice that := declares all bare variables as being pointed to. This is shorthand. x = :y + z is different from x = :y + :z.
+
+Cached Reactives: also called Eager Reactives, are a special type of variable that is given a signal to update every time one of its dependencies change.
+The value is cached in memory for later use, and doesn't have to be re-evaluated each call.
+Cached Reactives are called using the `$` prefix. You can remember it because cache sounds like cash.
+x = $y + $z
+or alternatively:
+x $= y + z
+Once again, similar to Pointer Reactives, Cached Reactives have no reason that they would need to be single-element only.
+It's technically allowed, but it's best to be avoided.
+
+If a reactive points to an object, and that object is freed or deleted, the pointer will return Undefined. An Address Pointer will return whatever value is at the address that it points to.
+
+All of these reactives create dependency chains. If a dependency cycle is detected, your program will error.
+If a cycle is provable at compile time, it will give you compile-time-proof-error.
+If a cycle is detected at runtime, it will give you a runtime error.
+
+7.1 Addressing and Dereferencing
+Trillia dereferences pointers by default. This means you're never pulled into the world of addresses unless you deliberately choose to do so.
+If you DO choose to enter the realm of addresses, there are three special operators that allow you to do so.
+
+The Address Operator `&` is prepended to a variable to get its address. If prepended to a pointer, it will get the address of the endpoint variable along its dependency chain.
+a := b
+b := c
+print(&a)
+This actually gives you the address of c.
+
+If you wish to get the address of a pointer, you can use the `:&` Pointer Address prefix instead. This is also called the "Source Address" or "Name Address" operator.
+The Pointer Address operator is designed to only ever give you the address of the exact object whose name you prepended it to. It works on regular variables too.
+a := b
+b := c
+print(:&a)
+This gives you the address of variable a.
+
+If you want a pointer to specifically point to the address of a variable, and not be dereferenced automatically, you can use the & or :& symbol to say so.
+x := :&y
+This means that x points to the source address of y; not to the value of y.
+
+Finally, we have the Dereference Operator `@`. The Dereference Operator gets the value at an address.
+a := &b
+print(@a)
+Variable a points to the address of b, then we print the value at where a points to.
+
+You can also use the @ operator to get whatever's at the address of a literal value:
+print(@1234)
+This prints whatever value can be found at address 1234.
+
+8. No Object Oriented Programming or Structs
+Yes. That's a good thing. Trillia strives for absolute simplicity, and because we have vectors, and reactives, that's all we need in order to make objects by hand.
+This section is not dedicated to a feature, rather, the lack of it.
+
+To create an object by hand, usually, you will want to create a dictionary with reactives that point to other variables in your code.
+
+player_maximum_health = 100
+player_maximum_mana = 20
+player_equipped_armor = "iron armor"
+player = [[`health`, :player_maximum_health], [`mana`, :player_maximum_mana], [`armor`, :player_equipped_armor]]
+
+This way, every object is crafted by hand, and everything is an array, so there is no learning curve. You create arrays in such a way where everything is transparent.
+Inheritence is done through reactivity. This is not only clearer, but also faster to compute. You can use pointers, pointer-reactives, or cache-reactives to get the exact result that you want.
+There is no special 'struct' keyword, or special object-oriented syntax. You don't even have to use a dictionary.
+It's just a useful tool that helps you get fast lookups while still being highly readable.
+player = [:player_maximum_health, :player_maximum_mana, :player_equipped_armor]
+This is what it looks like without it being a dictionary. The only problem is that you need to index it manually, and if elements move around in the array, it could be difficult to maintain.
+
+That's really all there is to it. Objects by hand.
+
+9. Automatic Garbage Collection
+Trillia's Garbage Collector is extremely simple, and actually so lightweight, that it slightly improves performance rather than impeding it. Here's how:
+Trillia's has two Garbage Collectors, and they are entirely separate entities. One of them is entirely designed for non-reactive objects, while the other only handles reactive objects.
+The Primary Garbage Collector is compile-time only, and the only thing that it does is insert free() operations where it can prove that it's safe to do so.
+It frees objects before they are normally freed in the program, either by exiting their scope or when a manual free() operation is used.
+If the Primary Garbage Collector cannot prove that it's safe to remove an object early, it will move on, and let that object live until the end of its natural scope.
+This means that the Garbage Collector never makes your program slower - all data in your program must be freed anyway, and the GC only exists to free it at the earliest possible time.
+The Garbage Collector ONLY negatively affects compile time, and it positively affects runtime very slightly by making it easier for the computer to find free space to define new data without cache-misses.
+The Primary Garbage Collector has no runtime overhead.
+
+As for the second Garbage Collector - its main purpose isn't actually to collect garbage at all. It's actually a safety-checker for reactive dependecies, that happens to also be perfect for Garbage Collection.
+Since the Reactive Safety Checker happens to already be keeping track of which objects point to which other objects, it can mark and destroy objects that are no longer being referenced.
+This Garbage Collector technically does take a lot of resources to maintain, however, it has multiple jobs, and the actual Garbage Collection part is a very miniscule module build ontop of its other tasks.
+So ultimately, the Secondary Garbage Collector has very little negative effect on performance when only considering the garbage collection portion of it.
+This Garbage Collector uses reference counting, and eliminates objects whose reference count reaches 0. It requires both compilation time and runtime.
+
+10. Manual Garbage Collection
+The `{}` braces are used for scope and namespace. Any object that was created inside of a scope will die at or before reaching the end of its scope.
+By default, the `{}` will free() any objects that reach its end. The entire program has a single global scope, which is like an implicit `{}` that surrounds everything.
+All functions and threads also have implicit `{}` scope that ends at the return or the end of the function.
+
+If you use `delete {}` then it will delete() all objects that were created within the scope instead of freeing them.
+
+The free() function frees data so the address may be used by other objects instead.
+x = 12
+free(x)
+This destroys x, and frees its address. The value 12 still exists at that memory location, but the Undefined flag is placed on any new object that claims that register.
+This means that no new object that claims the memory address that x had, can look at the value that x had.
+
+The zero() function is a function that essentially just wipes the bits of an object. This is useful for resetting an object before it's usurped (more on usurpation later)
+
+The delete() function is the zero() function followed immediately by the free() function. It eliminates all traces of the values that were stored there and then lets that space be used.
+This is a good way to get rid of any information that's potentially vulnerable to hacking.
+
+The is_free() function is used with an address as the input, and it returns whether that address is available for the taking or not.
+
+10.1 Usurpation and Manual Address Assignment
+
+During Declaration of an object, you can use the @ symbol to manually set where that data is supposed to go.
+int32 @1234 x = 24
+This creates variable x at address 1234, and sets the value to 24.
+
+The @ operator can be used to usurp other objects.
+int32 y = 30
+int32 @&y x = y
+The '@&y' is read as "at the address of y"
+This "creates" a new variable x, in the space where y is, killing y, then it "assigns" x's value to y's value.
+What this does, under the hood, is essentially just renaming y. And there's an optimisation that happens with "@&y" + "= y", which is just that x is never given the Undefined flag.
+If we don't say "= y" at the end, the variable x will steal the position that y had without being given access to its value. X will be flagged as Undefined.
+Destroying objects by taking their place is called "usurpation".
+
+The ()evict() and ()displace() functions are also useful too.
+(q)evict(r) is a function that creates q at r's position, and tells r to take a hike. This moves r to a new position.
+(q)evict(r, s) is a function that creates q at r's position, and tells r to take a hike. This moves r to a new position. Object r now goes to address s.
+To chain evictions together, you can do so with the function-chaining syntax: (a)evict(b)evict(c)evict(d). d is evicted at the end, and will go wherever is available.
+
+The ()displace() function takes in an address as its right-hand argument. Then, if there is an object there, that object is displaced and moved elsewhere.
+The same as the evict keyword, you can chain the ()displace() function too.
+
+You can use these special functions during declaration to place a variable in memory exactly how you wish, without having to first place the variable randomly
+int32 evict(y)evict(z) x = 32        # The exact syntax here is a bit undecided, but this is the idea.
+
+# 11. Functions
+Functions in Trillia, are blocks of code that can do a specific task whenever it is called.
+Here are an examples of function definitions:
+
+hello_world() =
+    print("hello world")
+
+(a)add(b) =
+    return a + b
+
+collatz(n) =
+    while n > 1 then if n /@ 2 then n / 2 else n * 3 + 1
+
+(n)collatz =
+    while n > 1
+        if n /@ 2
+            n / 2
+        else
+            n * 3 + 1
+
+Functions can be right-handed, left-handed, or ambidextrous.
+
+Right-handed functions are return-only and have no side-effects.
+
+Left-handed functions are what most other computer programming languages call 'methods'. They alter an object
+
+Ambidextrous functions alter an object, but have right-handed inputs that affect the manner in which the alteration occurs.
+
+For relative assignment lines:
+x + 5
+You can use left-handed functions to relatively assign what is to the left. This chains naturally, and keeps the statement as an assignment line.
+In Trillia, left-handedness is associated with augmentation of values, while right-handedness is associated with having no side-effects.
+This is the dichotomy between pure functional programming vs object augmentation.
+Trillia allows and encourages both, because there are times when one is slightly faster for optimization, or times when one is more readable.
+Trillia gives you the choice, and you can change between these styles freely.
+(((my_array)sort)append(y))pop(4)
+
+((x)add(10))multiply(20) + 5
+This entire line is a relative assignment of x.
+
+To assign a name to a function, you can do this:
+my_first_function() =
+    print("hello world")
+
+my_second_function() = my_first_function
+
+12. Threads
+The `thread` type is a type of function and a type of vector. Essentially, a thread is to a function what an array is to a variable.
+
+thread2 x(input_array) =
+    Just try to make a thing where they meet in the middle.
+
+Threads, like functions, can be right-handed or left-handed. Except with threads, right-handedness and left-handedness have additional meaning.
+
+For threads, right-handed inputs also mean that the input is locally copied to each thread.
+
+For left-handed inputs, it means that the input is globally shared among the threads, and it will undergo an augmentation queue.
+This is not reccomended, but for some tasks it may be difficult to avoid.
+
+All variables that are defined inside of a threaded function are defined as local variables by default.
+To make a variable only belong to one thread, or to share them often breaks determinism, so it's very much discriminated against, but it is allowed. Here's how:
+thread10 my_thread =
+    if thread = 1
+        x = 12
+This only ever creates the variable x for the first thread. variable x is never created in any other threads.
+
+If another thread is to access that thread's x variable, they must say:
+if x in thread[1] > 10
+    do some code
+They must explicitly mention which thread that variable belongs to. This can absolutely cause problems if not paired with awaits.
+
+If a const variable is accessed in threaded function, that variable is read-only, which means that there will be no queues required to access it.
+
+The await keyword passes a core along to another thread if there are other threads available to adopt that core.
+
+You can create a busy loop by using when + await to do busywork while waiting for a signal.
 
 
 
 
 
-==================================================
+13. If statements for assignment
+confusion between = and =
+x = y = z;
+In C, this is actually even less intuitive. Is it (x = y) and then (y = z), or is it y = z and then x = y?
+I'll tell you. It goes from right to left.
+In Trillia, the first = is an assignment of x, while the second one is a comparative operator.
+x = y > z
+Might make it easier to understand. You can use `if` to be more clear.
+x = if y = z
+Here, the `if` actually gets the value of the expression as True or False, and that is then returned to x.
+Maybe `if` should be enforced here for clarity. hmmm...
+Yeah, the if is enforced!
 
 
-X Low Level Pointers, Addresses, etc
-pointers use the : prefix for what variable is being pointed to.
-Pointer addresses use :&
-Addresses use &
-x = :y # x points to y.
+Normally, if you just have a line of code that calls a variable, but does nothing with it, you'll get a redundancy error, and the error handler will tell you to clean it up.
+my_var
+This would error immediately
 
-x gives the value of y
-y gives the value of y
-&x gives the address of y
-&y gives the address of y
-:&x gives the address of x
-:&y gives the address of y
+For the case of 'if' having values that return to nothing.
+If you have an if statement like this:
+if a = b
+then c
 
-@1234 is the opposite of the & operator. it is the address 1234. You can do a lot of cool things with it.
-x = :y       #this says that x points to y. x actually references the variable y itself, not the address of y. If the address of y changes, x will still point to y. This is why it is a reactive pointer, not just a pointer. It's by identity, not by address.
+here, normally, c would just be a variable whose value is returned into the void (causing a redundancy error).
+However, for conditionals like if and unless; if there is a value that's returned into the void, it's actually returned back to the if statement itself.
+This way, you can have:
+a = if b = c then True else False
+Normally, True and False would be returned to no object, but because they belong to an if block, they're returned to it instead.
+This will still cause an error if nothing is there to catch the returned value of the if
+If you're using an "if" as an assignment, you can chain many "if"s together, but every if must be paired with an else statement to prevent missing assignments, and each branch must give a return value back to the if.
+You can have a = if b = c, and that will be valid because b = c is returned to if as True or False. The final resolved value that is returned to the if when the expression is done with branching is the value that if returns back to the assignment operator.
 
-
-b = 6
-print(&b)    # this prints 1234
-print(@1234) # this prints 6
-# maybe * might be different. Idk.
+14. Naming Conventions
 
 
-free() doesn't reset the bits of an object. It kills a variable and marks the register as free for the taking.
-zero() resets all bits in a register or structure to 0. This is faster than delete if you want to usurp addresses using @&.
-delete() is just zero() and then free(). This is used when you don't have an inheritor in mind, but you want the data to be cleared - usually for safety reasons.
-is_free() returns True if an address is available for taking without need to usurp it.
-namespace "{}" and "delete {}" to free and delete all objects.
-
-
-
-------------
-
-Using the @ operator for definition or declaration can be super useful.
-int32 x = 24
-int32 @&x y;
-This means we now have a variable y that claims the register at x's address.
-"at the address of x, declare a variable y"
-This moves ownership of x's data directly to a new variable, y.
-This kills variable x in the process.
-You can use @1234 to define a variable "at" address 1234.
-
-
-@&. (a)usurp(b) a kills b and inherits all belongings. It's the same as renaming, but also with additional functionality that it can be used to manually place data where you want.
-(a)evict(b). b is a reference, like a variable name. a steals b's spot and b has to move somewhere else.
-(a)displace(b). b is an address. a says "if there's something here, it has to move out of my way and go somewhere else". There is no guarantee that something will be there.
-we can use usurp address and usurp &var
-we can use displace address and displace &var
-
-if a pointer points to a variable, and that variable gets freed, what should happen? (depends on identity versus address)
-Identity pointer: Undefined. unsalvagable.
-Address pointer: Undefined. Given value when the address is given value.
-
-own()
-borrow()
-disown()
-lend()
-give_back()
-share()
-revive() or something - it can clear the Undefined flag without assigning a new value. Might call it something else.
-
-
-
-
-X Reactivity
-Pointers
-Lazy Reactivity
-Cached Reactivity
-Signals
-
-
-X Functions
-Right-Handed Functions
-Left-Handed Functions (talk about relative assignment too here)
-Ambidextrous Functions
-assigning names to functions
-
-Y Parallel Threads
-Parallel Threading
-Right handed and left handed threads
-const keyword makes variables shared. This is because const is read only.
-
-Guidelines and additional rules:
-Naming
+15. Libraries and Imports
 Standard library uses automatic imports as needed, everything else needs manual imports
-No OOP, no structs
-The Language on C
 
 
-
-X Automatic Garbage Collection + Memory Management:
-Trillia's GC is compile-time only.
-There is no extra overhead, no reference-tracking, except likely for pointers and reactives, which already have most of the reference-counter and reference tree systems already built-in to prevent cyclical dependencies.
-The GC collects only what data can be provably unneeded. It calculates this during compile time, and if it cannot prove that an object is able to safely be destroyed early, then the GC does nothing, and lets it be destroyed at the end of its scope naturally.
-Somewhat paradoxically, Trillia's GC actually improves runtime speed very minutely rather than slowing it down. This is because there are more empty slots in memory available to place new objects, which makes it more likely to hit freed memory.
-Essentially, the GC has no runtime overhead. Unreactive objects are destroyed based on lifetime or provable compile-time analysis, and reactive objects use dependency chains that are already necessary to prevent cyclic dependencies.
-The runtime safety checker (RTS) handles all reactive objects, and frees them at runtime when the number of references = 0.
-The safety checker is needed to prevent cycles and other dangerous code, and it also just so happens that the same systems used for safety are also needed for GC of reactive objects.
-The RTS adds overhead, but it's not primarily a GC, and its GC processes don't add any extra overhead.
-This means that all GC in Trillia adds 0 extra overhead, and oftentimes due to memory allocation searches, Trillia's GC actually speeds up execution time very slightly instead of slowing it down.
-
-talk abour c_ and x86_64_ and arm64_
-
-
-Chart of things that you can define using = :
-variables
-arrays
-lists
-functions
-threads      (vectors)
-enums        (vectors)
-pointers
-pointer reactives
-cached reactives
-
-
-
-
-
-
-
-
-
-
-
-
-
+16. Trillia on C or C++
+The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
 
 
