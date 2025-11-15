@@ -612,7 +612,7 @@ The safety checker is needed to prevent cycles and other dangerous code, and it 
 The RTS adds overhead, but it's not primarily a GC, and its GC processes don't add any extra overhead.
 This means that all GC in Trillia adds 0 extra overhead, and oftentimes due to memory allocation searches, Trillia's GC actually speeds up execution time very slightly instead of slowing it down.
 
-
+talk abour c_ and x86_64_ and arm64_
 
 
 Chart of things that you can define using = :
