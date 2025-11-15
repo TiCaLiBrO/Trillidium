@@ -55,58 +55,73 @@ If you use a type without a size, the type of the variable will remain consisten
     int x = 120     # this is an 8 bit integer by default because it's the smallest size that can represent this value.
     x = 300         # It was promoted to a 16 bit integer to be able to represent this value.
 
-If you use the scal type (short for scalar), you can set a size but not a type. This is the same as a union in C.
+If you use the `scal` type (short for scalar), you can set a size but not a type. This is the same as a `union` in C.
 
     scal64 x = 4800
     x = -0.3333
 
-You can use the scal type without a size to explicitly state that a variable is intentionally dynamic type and size instead of being a hastily programmed prototype.
-scal x = "hello"
+You can use the `scal` type without a size to explicitly state that a variable is intentionally dynamic type and size instead of being a hastily programmed prototype.
+
+    scal x = "hello"
 
 2.3 Mutability
+
 There are four keywords that change which ways your data is allowed to be altered.
-The const keyword, alternatively written as constant, will prevent your data from being altered.
-The stat keyword, alternatively written as static, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
-The rel keyword, alternatively written as relative, will only allow your data to be relatively reassigned or altered, but not assigned.
-The mut keyword, alternatively written as mutable, will allow your data to be altered in all ways.
+The `const` keyword, alternatively written as `constant`, will prevent your data from being altered.
+The `stat` keyword, alternatively written as `static`, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
+The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
+The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default.
 
 2.4 Declarations
-If you wish to claim memory before assigning it a value, you can declare without assignment. It's reccomended that you use ; for clarity, signalling that you intentionally did not provide assignment.
-int32 x;
+
+If you wish to claim memory before assigning it a value, you can declare without assignment. It's reccomended that you use `;` for clarity, signalling that you intentionally did not provide assignment.
+
+    int32 x;
 
 If you have a variable with mutability restrictions, you can use a declarative line on that variable with a new mutability rule to specify a deliberate change in mutability.
-mutable x;
+
+    mutable x;
 
 If you wish to cast the type and or size of a variable into another type, you can also do so by using a declarative line.
-nat32 x;
+
+    nat32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
 
 2.5 Hard Variables
-Using the hard keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled X.tri, where X is the name of your program.
-If a hard variable is created, an X.trihard file will be created automatically to contain all hard variable data.
-Hard variables are much slower to assign or alter, but they are saved variables that don't require you to use read() or write()
+
+Using the `hard` keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled `X.tri`, where X is the name of your program.
+If a hard variable is created, an `X.trihard` file will be created automatically to contain all hard variable data.
+Hard variables are much slower to assign or alter, but they are saved variables that don't require you to use `read()` or `write()`.
 
 A special case:
-If you use hard + const, you get a literal value that is treated as a variable.
-hard const rat32 PI = 3.1415
-Here, the value of pi is stored in your program at compile time. It's very similar to #define in C.
+
+If you use `hard` + `const`, you get a literal value that is treated as a variable.
+
+    hard const rat32 PI = 3.1415
+Here, the value of pi is stored in your program at compile time. It's very similar to `#define` in C.
 
 # 3. Types
 Different data types are used best for different tasks. 
-Trillia has four numeric types: nat, int, rat, and float. All of these are suffixed by the number of bits used to represent them.
-All of the numeric types are suffixed by the number of bits used to represent them. For example, natX is most often in the forms nat, nat0, nat8, nat16, nat32, and nat64.
+Trillia has four numeric types: `nat`, `int`, `rat`, and `float`. All of these are suffixed by the number of bits used to represent them.
+For example, natX is most often in the forms `nat`, `nat8`, `nat16`, `nat32`, and `nat64`.
 
 3.1 Numerics
-Natural numbers "nat" are what most other languages call 'unsigned integer'. The nat type is the most basic form of numeric data type.
 
-Integers "int" allow negative numbers to be represented.
+Natural numbers `nat` are what most other languages call `unsigned integer`. The `nat` type is the most basic form of numeric data type.
 
-Rational numbers "rat" are actually an array of two numbers, a divisor and denomonator, that exist as a reduced fraction in memory. The size represents the size of both elements in the array.
+Integers `int` allow negative numbers to be represented.
+
+Rational numbers `rat` are actually an array of two numbers, a divisor and denomonator, that exist as a reduced fraction in memory. The size represents the size of both elements in the array.
 The rational type is preferred over floating point where precision is more valuable than speed.
 
-Floating point numbers "float" are exactly the same as floats usually are in other languages.
+Floating point numbers `float` are exactly the same as floats usually are in other languages.
 
-Next up is the Scalar type "scal", which is also notated in bits.
+Next up is the Scalar type `scal`, which is also notated in bits.
+=============================================================
+I LIED!!!!!!!!
+=============================================================
+
+
 
 3.2 Built-in Symbolic Types
 The next types are non-numeric, and have only one size.
