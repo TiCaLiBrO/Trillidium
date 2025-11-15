@@ -20,8 +20,11 @@ If you wish to have a single statement be split across multiple lines, you can u
 Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
 
 Whitespace is important, and enforced. To ensure maximal clarity, operations are split into different types.
+
 Binary operations require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+
 Suffixes must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
+
 Prefixes must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
