@@ -1,5 +1,5 @@
 # Trillia
-    Trillia is a computer programming language inspired by C, Python, Go, and Lua, with the purposes of ensuring maximal simplicity, readability, consistency, low-level speed, and rapidity of onboarding.
+Trillia is a computer programming language inspired by C, Python, Go, and Lua, with the purposes of ensuring maximal simplicity, readability, consistency, low-level speed, and rapidity of onboarding.
 The Implementation of Trillia is language agnostic. It doesn't matter which languages are used, and it also doesn't matter whether Trillia is transpiled, compiled, or interpreted, as long as it behaves the same.
 The An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very low level, unrestrictive, and has many libraries and modules.
 Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling.
@@ -28,7 +28,8 @@ Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given val
 
 2.1 Variable Assignment
 Variables are assigned using a variable name, followed by the = sign, then the value you are assigning to it
-x = 10
+
+    x = 10
 
 To swap two variables, you can use commas on both sides of the = sign
 a = 3
