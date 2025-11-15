@@ -31,7 +31,7 @@ Prefix Unary Operations: must always be prepended to what they modify. For examp
 In Trillia, the `=` sign is used for assignments of all objects.
 Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the `=` Assignment Operator.
 
-2.1 Variable Assignment
+2.1. Variable Assignment
 
 Variables are assigned using a variable name, followed by the `=` sign, then the value you are assigning to it
 
@@ -44,7 +44,7 @@ To swap two variables, you can use `,` commas on both sides of the `=` sign
     a, b = b, a
 This swaps the value of a and b.
 
-2.2 Strict Types and Sizes
+2.2. Strict Types and Sizes
 
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
 
