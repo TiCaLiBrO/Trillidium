@@ -32,6 +32,7 @@ In Trillia, the `=` sign is used for assignments of all objects.
 Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the `=` Assignment Operator.
 
 2.1 Variable Assignment
+
 Variables are assigned using a variable name, followed by the `=` sign, then the value you are assigning to it
 
     x = 10
@@ -44,16 +45,20 @@ To swap two variables, you can use `,` commas on both sides of the `=` sign
 This swaps the value of a and b.
 
 2.2 Strict Types and Sizes
+
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
-int32 x = 10
+
+    int32 x = 10
 
 If you use a type without a size, the type of the variable will remain consistent, but size promotion and demotion will occur when necessary.
-int x = 120     # this is an 8 bit integer by default
-    x = 300     # It was promoted to a 16 bit integer to be able to represent this value.
+
+    int x = 120     # this is an 8 bit integer by default because it's the smallest size that can represent this value.
+    x = 300         # It was promoted to a 16 bit integer to be able to represent this value.
 
 If you use the scal type (short for scalar), you can set a size but not a type. This is the same as a union in C.
-scal64 x = 4800
-       x = -0.3333
+
+    scal64 x = 4800
+    x = -0.3333
 
 You can use the scal type without a size to explicitly state that a variable is intentionally dynamic type and size instead of being a hastily programmed prototype.
 scal x = "hello"
