@@ -1,4 +1,4 @@
-Trillia
+# Trillia
 
 Trillia is a computer programming language inspired by C, Python, Go, and Lua, with the purposes of ensuring maximal simplicity, readability, consistency, low-level speed, and rapidity of onboarding.
 The Implementation of Trillia is language agnostic. It doesn't matter which languages are used, and it also doesn't matter whether Trillia is transpiled, compiled, or interpreted, as long as it behaves the same.
