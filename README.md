@@ -14,14 +14,14 @@ An Overview of the language:
 # 1. Whitespace
 
 Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. This ensures minimalism.
-If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use ; as an alternative. There are certain occations where ; is reccomended for clarity.
-If you wish to have a single statement be split across multiple lines, you can use ;; to nullify the \n new line character. This ensures that you can more easily represent matrixes in your code.
+If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use `;` as an alternative. There are certain occations where `;` is reccomended for clarity.
+If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can more easily represent matrixes in your code.
 Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
 
 Whitespace is important, and enforced. To ensure maximal clarity, operations are split into different types.
-Binary operations require a space before and after them. a / b is allowed, but not a/ b, a /b or a/b.
-Suffixes must be attached to the end of what they modify. For example, attaching the % symbol to the end of a number will divide that number by 100. 10% returns 0.1.
-Prefixes must always be prepended to what they modify. For example the - symbol can be prepended to a variable to flip its sign. if x = 12, then -x is -12.
+Binary operations require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+Suffixes must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
+Prefixes must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
 In Trillia, the = sign is used for assignments of all objects.
