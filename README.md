@@ -28,18 +28,19 @@ Suffix Unary Operations: must be attached to the end of what they modify. For ex
 Prefix Unary Operations: must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
-In Trillia, the = sign is used for assignments of all objects.
-Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the = Assignment Operator.
+In Trillia, the `=` sign is used for assignments of all objects.
+Variables, Arrays, Enums, Dictionaries, Functions, and Threads are all given value using the `=` Assignment Operator.
 
 2.1 Variable Assignment
-Variables are assigned using a variable name, followed by the = sign, then the value you are assigning to it
+Variables are assigned using a variable name, followed by the `=` sign, then the value you are assigning to it
 
     x = 10
 
-To swap two variables, you can use commas on both sides of the = sign
-a = 3
-b = 7
-a, b = b, a
+To swap two variables, you can use `,` commas on both sides of the `=` sign
+
+    a = 3
+    b = 7
+    a, b = b, a
 This swaps the value of a and b.
 
 2.2 Strict Types and Sizes
