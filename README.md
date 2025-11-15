@@ -14,7 +14,8 @@ An Overview of the language:
 # 1. Whitespace
 
 Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. This ensures minimalism.
-If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use `;` as an alternative. There are certain occations where `;` is reccomended for clarity.
+If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use `;` as an alternative.
+There are certain occations where `;` is reccomended for clarity, such as declaration without assignment.
 If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can more easily represent matrixes in your code.
 Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
 
