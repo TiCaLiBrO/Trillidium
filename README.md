@@ -31,11 +31,11 @@ Indented code is called **subordinate code**, and the code that is dedented abov
 
 Spaces are important and enforced. To ensure maximal clarity, operations are split into different categories:
 
-**Binary Operations** require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+* **Binary Operations** require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
 
-**Suffix Unary Operations** must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
+* **Suffix Unary Operations** must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
 
-**Prefix Unary Operations** must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
+* **Prefix Unary Operations** must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of *all* objects.
@@ -98,13 +98,13 @@ You can use the `scal` type without a size to explicitly state that a variable i
 
 There are four keywords that change which ways your data is allowed to be altered.
 
-The `const` keyword, alternatively written as `constant`, will prevent your data from being altered.
+* The `const` keyword, alternatively written as `constant`, will prevent your data from being altered.
 
-The `stat` keyword, alternatively written as `static`, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
+* The `stat` keyword, alternatively written as `static`, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
 
-The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
+* The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
 
-The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
+* The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
 
 ## 2.4 Declarations
 
@@ -187,22 +187,25 @@ Using the array type, Trillia will attempt to create an array, and if the elemen
 Using the list type always creates a linked list.
 The thread type is a special type of vector. More about it later in the Threads section.
 
-Declaration is done using the [] symbols
-my_list = [1, 2, 3]
-array3 int32 my_array = [1, 2, 3]
+Declaration is done using the `[]` symbols
+
+    my_list = [1, 2, 3]
+
+    array3 int32 my_array = [1, 2, 3]
 
 In Trillia, everything is an array. Let's restate that.
 In Trillia, everything is an array.
 Variables aren't technically arrays under the hood, but you can treat them like iterables with only one element. Everything can be treated like an array.
 You can also turn variables into true arrays very easily by using array methods on them
-x = 12
-(x)append(4)
-# now x = [12, 4]
+
+    x = 12
+    (x)append(4)
+    # now x = [12, 4]
 
 Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself, and specify their rules.
 There are many built-in functions that are best used for sets, such as union() or intersection(), and guidelines on which functions to use, but no hard rules.
 
-## 3.3 Custom Symbolic Types (Enumerations)
+## 3.3 Custom Symbolic Types (Enumerations & Dictionaries)
 Custom data types are defined using a name for the type, followed by the = sign, followed by an array, of which, each element is encapsulated with \` markers, similar to strings.
 
     fruits = [`apple`, `orange`, `banana`, `plum`]
@@ -223,10 +226,10 @@ Trillia is very strict about using spaces when using symbols. This ensures great
 Some symbols change meaning depending on where they are placed, so clarity through spacing is both important and enforced.
 For example, + can mean "positive" in +10, "addition" in 23 + 45, and "increment" in 6+.
 There are four main symbol types:
-Prefixes
-Suffixes
-Binary Operators
-Brackets
+* Prefixes
+* Suffixes
+* Binary Operators
+* Brackets
 
 All prefixes must be prepended to what they modify. All suffixes must be appended to what they modify. All binary operators require at least one space before and after what they modify, and brackets must be opened and closed.
 
