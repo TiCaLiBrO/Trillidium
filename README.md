@@ -750,6 +750,11 @@ my_first_function() =
 
 my_second_function() = my_first_function
 
+
+======================================================================================
+
+
+
 12. Threads
 The `thread` type is a type of function and a type of vector. Essentially, a thread is to a function what an array is to a variable.
 
@@ -781,8 +786,53 @@ The await keyword passes a core along to another thread if there are other threa
 
 You can create a busy loop by using when + await to do busywork while waiting for a signal.
 
+Using left-handed inputs allows you to mutate objects in global scope. But, with a few rules. And normally, you are not allowed to write to global scope.
+When an object enters a threaded function as a left-handed input, it tells the program that the object belongs to that function, and is not allowed to be mutated by anything else while the thread is active.
+To access the object, you must do this:
+thread3 (meme)super_cool() = 
+if thread = 1
+    mutation permission to thread[1]
+    await write to meme in super_cool
+Something *like* this is how it should work. This still isn't enough to ensure determinism, but it is a start.
+
+The only way to make this work is if we have a model that gives permission like hot potato, deliberately, OR assign one thread to be the
+only thread that owns an object, and feed that thread other thread's info as needed.
 
 
+
+
+
+
+
+
+
+Maybe I should just have it "await read of x by thread[10]" without an '_'.
+await_read and await_write
+await_write unto x in thread[3] / of x in thread[3]
+await_write unto x by thread[2] / unto x from thread[2] / of x by thread[2] / of x from thread[2]
+
+What about change of global state???
+
+Thread-mating
+If a thread is awaiting another thread to read from it or write to it, then it is called a submissive thread
+If a thread is awaiting another thread so that it can write to it or read from it, then it is called a dominant thread
+
+
+await read is faster than await write. Await read actually creates a temporary constant variable that can be safely read by the other thread. Await read actually doesn't stop the thread from moving.
+await read is also very likely discouraged because you can make constants instead, and make it so they're read without need of explicit sharing via mutual awaits.
+
+Maybe await write should actually also let the thread continue as far as it can go before it has to mutate that awaited variable.
+Once it encounters any code inside the thread that changes the awaited variable, it waits for the writer to change it before making the change.
+
+You can await multiple things, but the order that the awaits have to be resolved in is in FIFO order.
+await read of x in thread[2]
+await read of y in thread[2]
+here, x has to be read first, then y. 
+
+
+
+
+========================================
 
 
 13. If statements for assignment
