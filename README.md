@@ -204,7 +204,8 @@ There are many built-in functions that are best used for sets, such as union() o
 
 ## 3.3 Custom Symbolic Types (Enumerations)
 Custom data types are defined using a name for the type, followed by the = sign, followed by an array, of which, each element is encapsulated with \` markers, similar to strings.
-fruits = [`apple`, `orange`, `banana`, `plum`]
+
+    fruits = [`apple`, `orange`, `banana`, `plum`]
 The backticks are used in the same way as strings, but unlike strings, the entire word used is treated as a literal, individual characters cannot be indexed, and they take up far less memory than strings.
 The individual elements do not behave like numerics, but they can be accessed by index. Ultimately, you define the rules in which each symbol is used.
 For example, you cannot say apple + apple and expect orange to be the return value unless you specifically define that to be the case.
