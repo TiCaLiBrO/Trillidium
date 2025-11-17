@@ -1,4 +1,4 @@
-# Trillia
+# **Trillia**
 Trillia is a general-purpose computer programming language designed to be minimal, deterministic, low-level-capable, and be maximally easy to learn, to read, and to write.
 Trillia is inspired by C, Python, Go, and Lua.
 
