@@ -241,11 +241,14 @@ If there are more brackets to solve in parallel than there are cores on your com
 
 ## 4.3 Arithmetic Operator Symbols
 For Arithmetic, Trillia has seven binary operations. You do not have to import a math library to access pow(), sqrt(), or log(); these operations are built into the language as symbols, and are intuitive to use.
-'+ Addition
-'- Subtraction
 
-'* Multiplication
-/ Division
+ + Addition
+
+ - Subtraction
+
+ * Multiplication
+
+ / Division
 
 ** Exponentiation (Powers)
 // Radication (Roots)
