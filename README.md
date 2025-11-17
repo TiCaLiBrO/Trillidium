@@ -963,7 +963,7 @@ The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
 
 
-
+Talk about comments.
 talk about ()func() syntax. It's chosen because it's more consistent. A beginner doesn't have to think about a.b(c) syntax. it's always (a)b(c).
 
 
