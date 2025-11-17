@@ -1,39 +1,49 @@
 # Trillia
-Trillia is a computer programming language inspired by C, Python, Go, and Lua, with the purposes of ensuring maximal simplicity, readability, consistency, low-level speed, and rapidity of onboarding.
+Trillia is a general-purpose computer programming language designed to be minimal, deterministic, low-level-capable, and be maximally easy to learn, to read, and to write.
+Trillia is inspired by C, Python, Go, and Lua.
+
+The simplicity and pseudo-code-like design of Python is always easy to see in Trillia.
+Many consistent design choices have been implemented from Lua.
+The focus on parallelism, and the idea of convergent programming to make debugging easy, as well as the simplicity revolving around rapidity of onboarding makes Trillia resemble Go's design in many ways.
+The low-level nature, and absolute simplicity of C is present in Trillia, with Trillia only having about 7 core features.
+That means, if you learn a feature a day, you can learn Trillia in a week.
+
+These seven core features are namely: Variables, Control Structures, Vectors, Symbolics, Reactives, Functions, and Threads.
+
+Trillia has some features that are not seen in its 'parent' languages. Namely, reactivity is a major focal point of Trillia, and unlike Go and C, Trillia's parallel threading is fully deterministic.
+In fact, the entire language is fully deterministic aside from certain functions or imports, such as random, time and unsafe functions.
+
 The Implementation of Trillia is language agnostic.
-It doesn't matter which languages are used, and it also doesn't matter whether Trillia is transpiled, compiled, or interpreted, as long as it behaves deterministically.
-An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very low-level, unrestrictive, and has many libraries and modules.
-Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling.
+It doesn't matter whether Trillia is transpiled, compiled, or interpreted, and it also doesn't matter which languages are used to implent Trillia, as long as it behaves deterministically and is true to Trillia's blueprints.
+An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very fast, low-level, unrestrictive, and has many libraries and modules.
+Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling. If it compiles to a language, it should be able to take advantage of the language that it runs on.
 
-Trillia prioritizes determinism above all else, and then speed directly under that, and then simplicity, readability, and ease below that.
-Everything in the language is shaped to follow this heirarchy. Trillia rarely ever needs to compromise these, but whenever there must be a compromise, this is the prioritization order.
-
-It's worth noting that some features like reactivity and threading are central to the language, but appear later in the overview because they require knowledge on other systems first.
-
-An Overview of the language:
+**An Overview of the language:**
 
 # 1. Whitespace
 
-Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. This ensures minimalism.
-If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can use `;` as an alternative.
+Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. Minimalism is prioritized.
+One of the goals of Trillia is to have code be written how a progammer thinks, and maximize quality of life. Your code should look like pseudo code, and you should never be fighting against the syntax.
+If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can optionally use `;` as an alternative to the `\n` character.
 There are certain occations where `;` is reccomended for clarity, such as declaration without assignment.
-If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can more easily represent matrixes in your code.
-Indented code is called "subordinate code", and the code that is dedented above that subordinate code is called "ordinate code". Indents are 4 spaces.
+If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can format code in the way that you like.
+Indented code is called **subordinate code**, and the code that is dedented above that subordinate code is called **ordinate code**. Indentation is 4 spaces.
 
-Whitespace is important and enforced. To ensure maximal clarity, operations are split into different categories:
+Spaces are important and enforced. To ensure maximal clarity, operations are split into different categories:
 
-Binary Operations: require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+**Binary Operations** require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
 
-Suffix Unary Operations: must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
+**Suffix Unary Operations** must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
 
-Prefix Unary Operations: must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
+**Prefix Unary Operations** must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
 
 # 2. Unified Assignment Operator
-In Trillia, the `=` sign is used for assignments of all objects.
-Variables, Arrays and Lists, Enums, Dictionaries, Pointers and Reactives, Functions, and Threads are all given value using the `=` Assignment Operator.
-There are no objects in Trillia that can be assigned value without the Assignment Operator. And that list of objects is the entire list of all things that can be created in Trillia.
+In Trillia, the `=` sign is used for assignments of *all* objects.
 
-## 2.1. Variable Assignment
+Variables, Control Structures, Vectors, Symbolics, Reactives, Functions, and Threads are *all* given value using the `=` Assignment Operator.
+There are *no* objects in Trillia that can be assigned value without the Assignment Operator. And this list of objects is *the entire list of all things that can be created in Trillia*.
+
+## 2.1 Variable Assignment
 
 Variables are assigned using a variable name, followed by the `=` sign, then the value you are assigning to it
 
@@ -46,7 +56,25 @@ To swap two variables, you can use `,` commas on both sides of the `=` sign
     a, b = b, a
 This swaps the value of a and b.
 
-## 2.2. Strict Types and Sizes
+You cannot do chained assignments.
+
+    a = b = c
+Is not allowed because it's ***bad code***. This prevented to avoid confusion and maximize clarity.
+If you wish to do multiple assignments on a single line, you must either use `,` or `;` to separate assignments.
+
+    a = b; b = c
+or
+
+    a, b = b, c
+
+You must either have an equal number of left-hand and right-hand elements, OR have many left-hand elements and only one right-hand element.
+
+Having many left-hand elements and one right-hand element will place the right-hand element's value into all left-hand containers.
+
+    a, b, c, d, e = f
+Here, a, b, c, d, and e all are assigned to value of f.
+
+## 2.2 Strict Types and Sizes
 
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
 
@@ -76,7 +104,7 @@ The `stat` keyword, alternatively written as `static`, will only allow your data
 
 The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
 
-The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default.
+The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
 
 ## 2.4 Declarations
 
@@ -92,16 +120,26 @@ If you wish to cast the type and or size of a variable into another type, you ca
 
     nat32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
+It is highly recomended that you use the `rat` rational type to be able to represent values perfectly.
 
-## 2.5 Hard Variables and Glass Variables
+## 2.5 Hard Variables
 
-Using the `hard` keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled `X.tri`, where X is the name of your program.
-If a hard variable is created, an `X.trihard` file will be created automatically to contain all hard variable data.
+By default, when you create a variable, you are creating something called a `soft` variable. A `soft` variable is any variable that lives inside register space.
+These variables are not saved, and they can be rapidly modified. These are by far the most common type of variable.
+
+Using the `hard` keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled `X.tri`, where X is a placeholder for the name of your program.
+If a hard variable is created, an `X.trihard` file of the same name will be created automatically to contain all hard variable data.
 Hard variables are much slower to assign or alter, but they are saved variables that don't require you to use `read()` or `write()`.
 
-===========================================================================================================================
-TALK ABOUT GLASS VARIABLES
-===========================================================================================================================
+All `hard` variables persist across multiple runs of a program. This is their main purpose. They are essitially just a more user-friendly and variable-consistent way of doing write() operations.
+
+Writing to disc space is usually very slow compared to register space. It's recommended that you make `hard` variables either read-only or read-mostly.
+Here, "read-mostly" just means that read operations occur more often than write operations.
+The `hard` variables are made even slower to modify by having automatic safety measures in place to prevent corruption.
+During any change to a `hard` variable, a three-step process begins.
+First, a copy of the variable with the newly-assigned value is created.
+Then, that new value is pasted over the old value of the original copy of the variable.
+And finally, the new copy is freed from memory.
 
 A special case:
 
@@ -676,6 +714,10 @@ The zero() function is a function that essentially just wipes the bits of an obj
 The delete() function is the zero() function followed immediately by the free() function. It eliminates all traces of the values that were stored there and then lets that space be used.
 This is a good way to get rid of any information that's potentially vulnerable to hacking.
 
+If you use the free() or delete() keywords, the GC will assume you know what you're doing, and will not handle that data automatically.
+If you want some data to persist throughout the entirety of a program, instead of being garbage collected during program execution as soon as possible, you can declare it in global space, and manually free it at program end.
+This is a good way to ensure that your data isn't constantly slowing down your program while it's being freed. However, it comes with the cost of wasting extra memory during program run.
+
 The is_free() function is used with an address as the input, and it returns whether that address is available for the taking or not.
 
 ## 10.1 Usurpation and Manual Address Assignment
@@ -831,11 +873,22 @@ here, x has to be read first, then y.
 
 
 
+There is also permit read and permit write
+x = 10
+permit read of x from my_function
+This is usually used for global scope. It's essentially an ownership model.
+To "undo" it, you simply says "permit read of x"
+
+
 
 ========================================
 
 
-# 13. If statements for assignment
+# 13. If Statements for Assignment
+
+
+
+
 confusion between = and =
 x = y = z;
 In C, this is actually even less intuitive. Is it (x = y) and then (y = z), or is it y = z and then x = y?
@@ -866,6 +919,10 @@ Normally, True and False would be returned to no object, but because they belong
 This will still cause an error if nothing is there to catch the returned value of the if
 If you're using an "if" as an assignment, you can chain many "if"s together, but every if must be paired with an else statement to prevent missing assignments, and each branch must give a return value back to the if.
 You can have a = if b = c, and that will be valid because b = c is returned to if as True or False. The final resolved value that is returned to the if when the expression is done with branching is the value that if returns back to the assignment operator.
+
+a cool thing about the = inside of if statements is that, oddly, it actually CAN be used for assignment.
+a = if b = c
+This is a valid statement. It defines a based on whether b and c are equal.
 
 # 14. Naming Conventions
 
