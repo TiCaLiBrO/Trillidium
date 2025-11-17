@@ -33,7 +33,7 @@ In Trillia, the `=` sign is used for assignments of all objects.
 Variables, Arrays and Lists, Enums, Dictionaries, Pointers and Reactives, Functions, and Threads are all given value using the `=` Assignment Operator.
 There are no objects in Trillia that can be assigned value without the Assignment Operator. And that list of objects is the entire list of all things that can be created in Trillia.
 
-2.1. Variable Assignment
+## 2.1. Variable Assignment
 
 Variables are assigned using a variable name, followed by the `=` sign, then the value you are assigning to it
 
@@ -46,7 +46,7 @@ To swap two variables, you can use `,` commas on both sides of the `=` sign
     a, b = b, a
 This swaps the value of a and b.
 
-2.2. Strict Types and Sizes
+## 2.2. Strict Types and Sizes
 
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
 
@@ -66,7 +66,7 @@ You can use the `scal` type without a size to explicitly state that a variable i
 
     scal x = "hello"
 
-2.3 Mutability
+## 2.3 Mutability
 
 There are four keywords that change which ways your data is allowed to be altered.
 
@@ -78,7 +78,7 @@ The `rel` keyword, alternatively written as `relative`, will only allow your dat
 
 The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default.
 
-2.4 Declarations
+## 2.4 Declarations
 
 If you wish to claim memory before assigning it a value, you can declare without assignment. It's reccomended that you use `;` for clarity, signalling that you intentionally did not provide assignment.
 
@@ -93,7 +93,7 @@ If you wish to cast the type and or size of a variable into another type, you ca
     nat32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
 
-2.5 Hard Variables and Glass Variables
+## 2.5 Hard Variables and Glass Variables
 
 Using the `hard` keyword, variables can be stored as writes to another file. Trillia files that you program in are labelled `X.tri`, where X is the name of your program.
 If a hard variable is created, an `X.trihard` file will be created automatically to contain all hard variable data.
@@ -115,7 +115,7 @@ Different data types are used best for different tasks.
 Trillia has four numeric types: `nat`, `int`, `rat`, and `float`. All of these are suffixed by the number of bits used to represent them.
 For example, natX is most often in the forms `nat`, `nat8`, `nat16`, `nat32`, and `nat64`.
 
-3.1 Numerics
+## 3.1 Numerics
 
 Natural numbers `nat` are what most other languages call `unsigned integer`. The `nat` type is the most basic form of numeric data type.
 
@@ -133,14 +133,14 @@ I LIED!!!!!!!!
 
 
 
-3.2 Built-in Symbolic Types
+## 3.2 Built-in Symbolic Types
 The next types are non-numeric, and have only one size.
 char is 8 bits, used to represent characters in strings. They use ascii.
 bool only has two literal values, True or False.
 Undefined is the default value of any variable that has been declared but not assigned. If a read occurs on a value that is Undefined, it will cause an error.
 None is similar to Undefined, except it is used to explicitly return an empty value. This doesn't crash upon read.
 
-3.3 Vector Types
+## 3.3 Vector Types
 The vector types are: vecX, arrayX, listX, and threadX.
 Vectors are suffixed not by number of bits, but instead by number of elements that they have. For example, array4 holds 4 elements.
 Vectors exist in two flavors: arrays and lists.
@@ -164,14 +164,14 @@ x = 12
 Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself, and specify their rules.
 There are many built-in functions that are best used for sets, such as union() or intersection(), and guidelines on which functions to use, but no hard rules.
 
-3.3 Custom Symbolic Types (Enumerations)
+## 3.3 Custom Symbolic Types (Enumerations)
 Custom data types are defined using a name for the type, followed by the = sign, followed by an array, of which, each element is encapsulated with \` markers, similar to strings.
 fruits = [`apple`, `orange`, `banana`, `plum`]
 The backticks are used in the same way as strings, but unlike strings, the entire word used is treated as a literal, individual characters cannot be indexed, and they take up far less memory than strings.
 The individual elements do not behave like numerics, but they can be accessed by index. Ultimately, you define the rules in which each symbol is used.
 For example, you cannot say apple + apple and expect orange to be the return value unless you specifically define that to be the case.
 
-3.4 Dictionaries
+## 3.4 Dictionaries
 ================================= UNFINISHED ========================================
 
 
@@ -179,7 +179,7 @@ For example, you cannot say apple + apple and expect orange to be the return val
 # 4. Symbols and Operations
 Trillia makes use of keyboard symbols to perform common operations.
 
-4.1 Symbol Spacing
+## 4.1 Symbol Spacing
 Trillia is very strict about using spaces when using symbols. This ensures greater readability.
 Some symbols change meaning depending on where they are placed, so clarity through spacing is both important and enforced.
 For example, + can mean "positive" in +10, "addition" in 23 + 45, and "increment" in 6+.
@@ -191,7 +191,7 @@ Brackets
 
 All prefixes must be prepended to what they modify. All suffixes must be appended to what they modify. All binary operators require at least one space before and after what they modify, and brackets must be opened and closed.
 
-4.2 Order of operations
+## 4.2 Order of operations
 In Trillia, the order of operations is always brackets first, left to right. There is no higher precedence given to multiplication over addition, or certain functions over others.
 2 + 5 * 10 returns 70. If you want it to be done in proper order, just move things around or use brackets.
 5 * 10 + 2   returns 52
@@ -201,7 +201,7 @@ If there are multiple disconnected brackets in a larger expression, if your vers
 (3) + (7) # both sides were solved simultaneusly.
 If there are more brackets to solve in parallel than there are cores on your computer, left-most brackets are resolved first to preserve left-to-right execution.
 
-4.3 Arithmetic Operator Symbols
+## 4.3 Arithmetic Operator Symbols
 For Arithmetic, Trillia has seven binary operations. You do not have to import a math library to access pow(), sqrt(), or log(); these operations are built into the language as symbols, and are intuitive to use.
 + Addition
 - Subtraction
@@ -341,7 +341,7 @@ The +- means you're doing +, which makes the value of the variable positive, and
 Trillia always reads signs from left to right. Order of operations is notated through left-to-right order and parentheses.
 Under the hood, +- is just a single bitwise operation to set the sign bit, even though it's read by humans as two separate operations.
 
-4.4 Bitwise Operations
+## 4.4 Bitwise Operations
 Bitwise operators are used for low-level control. 
 The 8 primary bitwise operations are:
 &    ~&
@@ -358,22 +358,22 @@ The \ gate can be read as "without"
 
 The ~ operator is a prefix operator, while all other bitwise operators are binary operators.
 
-4.5 Some Extra Unary Operators
+## 4.5 Some Extra Unary Operators
 The unary operators discussed already are the + prefix, - prefix, ~ prefix, the + suffix, and the - suffix.
 Using % as a suffix divides the number by 100 to give a percent
 Using ! as a prefix changes a component of a logical statement to be the inverse. As in "if a and !b", which can be alternatively written as "if a and not b", but ! affects only what it is prefixed to.
 Using ! as a suffix returns the factorial of that number
 
-4.6 Relative Assignment Lines
+## 4.6 Relative Assignment Lines
 In Trillia, for any line of code that starts with a variable, and does not assign or reassign that variable, the variable is relatively assigned.
 a + 7 * 2
 This takes a, adds seven to it, then doubles it. That's the new value of a. If there are multiple variables on a line, such as in a * b, then only the leftmost variable is reassigned.
 
-5. Control Structures
+# 5. Control Structures
 The six comparative operators are: =, !=, >, <, >=, and <=.
 These operators return True or False, and are used to interact most often with conditions.
 
-5.1 Branch Control Structures
+## 5.1 Branch Control Structures
 Trillia supports if, else, unless, and then.
 The if and unless keywords are followed by a condition and subordinate code.
 if x = 6
@@ -422,7 +422,7 @@ Trillia has a very simple ternary operator.
 if a then b else c
 That's it, and it's no different in syntax than regular if else statements. You can use the unless keyword too.
 
-5.2 Reactive Branch Control Structures
+## 5.2 Reactive Branch Control Structures
 Trillia has signals. The when keyword allows you to set a condition that when True, jumps code execution to the when block's subordinate code.
 day = [`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`]
 day x;
@@ -443,7 +443,7 @@ x = Saturday
 }
 You can also use the break keyword to break out of the when block early, starting from directly after the when block ends, rather than resuming.
 
-5.3 Loops
+## 5.3 Loops
 In Trillia, there are some control keywords that create a loop.
 The repeat keyword is the simplest looping keyword. If given no value, it will repeat forever, or until the subordinate code encounters the break keyword
 repeat
@@ -488,14 +488,14 @@ Function calls are technically also control structures, but aren't usually thoug
 They unconditionally jump you to another part of the code, and then return you back to where you left off.
 In Trillia, you can use the break keyword on functions to make them behave similarly to a goto statement.
 
-6. Debugging
+# 6. Debugging
 The ? operator can be appended to a variable to track and print every change that happens to it from that point in the code onward.
 x = 3
 x?        # this line is used to explicitly track x
 while x != 1
     if x /@ 2 then x / 2 else x * 3 + 1
 
-# This prints out:
+This prints out:
 >>> while x != 1 where x = 3 returns True to while
 >>> if x /@ 2 where x = 3 returns False to if
 >>> else x * 3 + 1 where x = 3 relatively assigns x = 10
@@ -592,7 +592,7 @@ All of these reactives create dependency chains. If a dependency cycle is detect
 If a cycle is provable at compile time, it will give you compile-time-proof-error.
 If a cycle is detected at runtime, it will give you a runtime error.
 
-7.1 Addressing and Dereferencing
+## 7.1 Addressing and Dereferencing
 Trillia dereferences pointers by default. This means you're never pulled into the world of addresses unless you deliberately choose to do so.
 If you DO choose to enter the realm of addresses, there are three special operators that allow you to do so.
 
@@ -622,7 +622,7 @@ You can also use the @ operator to get whatever's at the address of a literal va
 print(@1234)
 This prints whatever value can be found at address 1234.
 
-8. No Object Oriented Programming or Structs
+# 8. No Object Oriented Programming or Structs
 Yes. That's a good thing. Trillia strives for absolute simplicity, and because we have vectors, and reactives, that's all we need in order to make objects by hand.
 This section is not dedicated to a feature, rather, the lack of it.
 
@@ -642,7 +642,7 @@ This is what it looks like without it being a dictionary. The only problem is th
 
 That's really all there is to it. Objects by hand.
 
-9. Automatic Garbage Collection
+# 9. Automatic Garbage Collection
 Trillia's Garbage Collector is extremely simple, and actually so lightweight, that it slightly improves performance rather than impeding it. Here's how:
 Trillia's has two Garbage Collectors, and they are entirely separate entities. One of them is entirely designed for non-reactive objects, while the other only handles reactive objects.
 The Primary Garbage Collector is compile-time only, and the only thing that it does is insert free() operations where it can prove that it's safe to do so.
@@ -658,7 +658,7 @@ This Garbage Collector technically does take a lot of resources to maintain, how
 So ultimately, the Secondary Garbage Collector has very little negative effect on performance when only considering the garbage collection portion of it.
 This Garbage Collector uses reference counting, and eliminates objects whose reference count reaches 0. It requires both compilation time and runtime.
 
-10. Manual Garbage Collection
+# 10. Manual Garbage Collection
 The `{}` braces are used for scope and namespace. Any object that was created inside of a scope will die at or before reaching the end of its scope.
 By default, the `{}` will free() any objects that reach its end. The entire program has a single global scope, which is like an implicit `{}` that surrounds everything.
 All functions and threads also have implicit `{}` scope that ends at the return or the end of the function.
@@ -678,7 +678,7 @@ This is a good way to get rid of any information that's potentially vulnerable t
 
 The is_free() function is used with an address as the input, and it returns whether that address is available for the taking or not.
 
-10.1 Usurpation and Manual Address Assignment
+## 10.1 Usurpation and Manual Address Assignment
 
 During Declaration of an object, you can use the @ symbol to manually set where that data is supposed to go.
 int32 @1234 x = 24
@@ -755,7 +755,7 @@ my_second_function() = my_first_function
 
 
 
-12. Threads
+# 12. Threads
 The `thread` type is a type of function and a type of vector. Essentially, a thread is to a function what an array is to a variable.
 
 thread2 x(input_array) =
@@ -835,7 +835,7 @@ here, x has to be read first, then y.
 ========================================
 
 
-13. If statements for assignment
+# 13. If statements for assignment
 confusion between = and =
 x = y = z;
 In C, this is actually even less intuitive. Is it (x = y) and then (y = z), or is it y = z and then x = y?
@@ -867,14 +867,14 @@ This will still cause an error if nothing is there to catch the returned value o
 If you're using an "if" as an assignment, you can chain many "if"s together, but every if must be paired with an else statement to prevent missing assignments, and each branch must give a return value back to the if.
 You can have a = if b = c, and that will be valid because b = c is returned to if as True or False. The final resolved value that is returned to the if when the expression is done with branching is the value that if returns back to the assignment operator.
 
-14. Naming Conventions
+# 14. Naming Conventions
 
 
-15. Libraries and Imports
+# 15. Libraries and Imports
 Standard library uses automatic imports as needed, everything else needs manual imports
+The unsafe library is the only official library that is not given by default. It allows you to do some extra things like revive()
 
-
-16. Trillia on C or C++
+# 16. Trillia on C or C++
 The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
 
