@@ -1042,6 +1042,28 @@ The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
 
 
+Should I allow:
+int32, nat32 x = 20
+A more customized way of creating duck-typing or unions
+
+Talk more about function chaining. Work out the kinks in the system (a)append(b)intersection(c)
+
+Go through a thorough process of dissecting what threads really need to ensure determinism.
+1. Left handed threads are necessary for the threaded function to claim ownership of global objects.
+2. you need to grant permitions to change a thread-owned object before you can mess with it. Each object can be tossed around separately
+3. Really understand if this is deterministic or not. Really get into the weeds. If it's not, then make a single thread only be able to affect the object, and disallow permission passing.
+permit write to x by thread[y]. Permissions must be one at a time. Once the thread is destroyed, permission is automatically granted globally.
+
+Consider the possibility of custom iterable types.
+set = []
+and then allow the custom set type to be mutated in only very specific ways.
+
+Think about dictionaries a bit more. What exactly are they? Are they definitions of enums in and of themselves, or do/can they use pre-existing enums?
+
+
+
+
+
 
 Talk about strings. We literally just breeze past them.
 Talk about comments.
