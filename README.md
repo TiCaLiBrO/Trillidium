@@ -59,7 +59,7 @@ This swaps the value of a and b.
 You cannot do chained assignments.
 
     a = b = c
-Is not allowed because it's ***bad code***. This prevented to avoid confusion and maximize clarity.
+Is not allowed because it's ***bad code***. This is prevented to avoid confusion and maximize clarity.
 If you wish to do multiple assignments on a single line, you must either use `,` or `;` to separate assignments.
 
     a = b; b = c
