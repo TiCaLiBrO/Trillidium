@@ -170,9 +170,15 @@ Next up is the Scalar type `scal`, which is also notated in bits.
 I LIED!!!!!!!!
 =============================================================
 
+## 3.2 Unionized Types
 
+If the `scal` type is too unbounded, you can use unionization to specify exactly which types are allowed.
+Unionization is done via typing an object multiple times in a single assignment line.
 
-## 3.2 Built-in Symbolic Types
+    int32 nat32 x = 24
+This will always choose the first listed type (int32) if possible to represent the value of x, and then any other values are checked if it's not possible. The priority goes from left to right.
+
+## 3.3 Built-in Symbolic Types
 The next types are non-numeric, and have only one size.
 `char` is 8 bits, used to represent characters in strings. They use ascii.
 `bool` only has two literal values, `True` or `False`.
@@ -206,7 +212,7 @@ You can also turn variables into true arrays very easily by using `array` functi
 Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself, and specify their rules.
 There are many built-in functions that are best used for sets, such as `union()` or `intersection()`, and guidelines on which functions to use, but no hard rules.
 
-## 3.3 Custom Symbolic Types (Enumerations & Dictionaries)
+## 3.4 Custom Symbolic Types (Enumerations & Dictionaries)
 Custom data types are defined using a name for the type, followed by the `=` sign, followed by an `array`, of which, each element is encapsulated with \` markers, similar to `"`s or `'`s for strings.
 
     fruits = [`apple`, `orange`, `banana`, `plum`]
@@ -214,7 +220,7 @@ The backticks are used in the same way as strings, but unlike strings, the entir
 The individual elements do not behave like numerics, but they can be accessed by index. Ultimately, you define the rules in which each symbol is used.
 For example, you cannot say `apple + apple` and expect `orange` to be the return value unless you specifically define that to be the case.
 
-## 3.4 Dictionaries
+## 3.5 Dictionaries
 ================================= UNFINISHED ========================================
 
 
@@ -885,7 +891,21 @@ my_first_function() =
 my_second_function() = my_first_function
 
 
-======================================================================================
+## 11.1 Function Nesting
+((a)append(b))append(c)
+
+========================
+
+## 11.2 Function Chaining
+If you chain functions, the left-handed object undergoes the first function, then the result becomes the left-handed object for the next function.
+
+    (a)append(b)append(c)
+Here, b is appended to a. Object a is altered, then c is appended to a.
+
+((a)append(b))append(c)        --- difference??? ma?
+maybe it ought to be such that (a)append(b)append(c) is where (a)append(b) and then (b)append(c) ne?
+
+=========================
 
 
 
@@ -973,6 +993,31 @@ To "undo" it, you simply says "permit read of x"
 
 
 
+Thread object ownership model. To ensure deterministic writing capabilities, any non-local object to a threaded function must be imported.
+Importing higher-scope-objects is done via left-handed thread inputs. (a)my_thread makes the object a become owned by the threaded function.
+The object a cannot be altered from any other source while the threaded function is still ongoing.
+
+Any object that is owned by a threaded function, must undergo a second step of being owned by a specific thread.
+permit write unto a by thread[6]
+
+
+
+
+
+
+What about read-only threads? and threads not returning, or returning None.
+For example, we might not want every thread to return a value
+
+How exactly are threads even exited? What I had before was once all threads return or reach the end, but it might be more funky than that.
+
+
+
+
+
+
+
+
+
 ========================================
 
 
@@ -1030,7 +1075,9 @@ The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
 
 
-
+# 17. Trillia's Virtual Memory Machine
+Trillia has a very different address system than what you are used to. To ensure full determinism, virtual memory is managed by Trillia entirely.
+Memory is indexed as a large vector. EVERYTHING IS A VECTOR DAMNIT!!!
 
 
 
