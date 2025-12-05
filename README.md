@@ -40,7 +40,7 @@ Spaces are important and enforced. To ensure maximal clarity, operations are spl
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of *all* objects.
 
-Variables, Control Structures, Vectors, Symbolics, Reactives, Functions, and Threads are *all* given value using the `=` Assignment Operator.
+Variables, Control Structures, Vectors, Types, Reactives, Functions, and Threads are *all* given value using the `=` Assignment Operator.
 There are *no* objects in Trillia that can be assigned value without the Assignment Operator. And this list of objects is *the entire list of all things that can be created in Trillia*.
 
 ## 2.1 Variable Assignment
