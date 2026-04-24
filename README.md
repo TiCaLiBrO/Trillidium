@@ -166,10 +166,6 @@ Floating point numbers `float` are exactly the same as floats usually are in oth
 
 Next up is the Scalar type `scal`, which is also notated in bits.
 
-=============================================================
-UNFINISHED
-=============================================================
-
 ## 3.2 Unionized Types
 
 If the `scal` type is too unbounded, you can use unionization to specify exactly which types are allowed.
