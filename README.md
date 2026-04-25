@@ -24,20 +24,18 @@ An ideal Trillia implementation would be a boostrapped Trillia that compiles to 
 
 # 1. Whitespace
 
-Trillia is whitespace significant. Indentation replaces the need for brackets, and new line characters replace the need for semicolons. Minimalism is prioritized.
-One of the goals of Trillia is to have code be written how a progammer thinks, and maximize quality of life. Your code should look like pseudo code, and you should never be fighting against the syntax.
+Trillia is whitespace significant. Indentation replaces the need for brackets, and newlines replace the need for semicolons. Minimalism is prioritized.
+One goal of Trillia is to have code be written how a programmer thinks, and to maximize their quality of life. Your code should be easy to read, resembling pseudo-code, and you should never be fighting against the syntax.
 If you wish to have multiple statements on a single line of code, or just wish to be explicit, you can optionally use `;` as an alternative to the `\n` character.
-There are certain occations where `;` is reccomended for clarity, such as declaration without assignment.
+There are certain occasions where `;` is enforced for clarity, such as declaration without assignment. In Trillia, you normally cannot just 'mention' an object's existence without using that object for something, and the semicolon acts as an "I'm deliberately not doing anything with this yet" clarifier. This is because grammatically, a semicolon is a way of stating "there is more", in the same way that you are stating that you're done with the object for now, but not done using the object in total.
 If you wish to have a single statement be split across multiple lines, you can use `;;` to nullify the `\n` new line character. This ensures that you can format code in the way that you like.
-Indented code is called **subordinate code**, and the code that is dedented above that subordinate code is called **ordinate code**. Indentation is 4 spaces.
+Indented code is called **subordinate code**, and the code that is dedented above subordinate code is called **ordinate code**. Indentation is 4 spaces.
 
-Spaces are important and enforced. To ensure maximal clarity, operations are split into different categories:
+Spaces are important and enforced. Writing `a+b` means something entirely different from `a + b`. Trillia is designed for clarity, so there is a right and wrong way to write things.
 
-* **Binary Operations** require a space before and after them. `a / b` is allowed, but not `a/ b`, `a /b` or `a/b`.
+The spacing of an operation matters. `x - y` is subtraction "X minus Y", `x-y` is range "X to Y", and `-x` is negative "Negative X". These all use the same symbol, but in different contexts. The spaces before and after the `-` sign are what give it different meanings. `x-` is not a built-in operator, but you can define it yourself.
 
-* **Suffix Unary Operations** must be attached to the end of what they modify. For example, attaching the `%` symbol to the end of a number will divide that number by 100. `10%` returns `0.1`.
-
-* **Prefix Unary Operations** must always be prepended to what they modify. For example the `-` symbol can be prepended to a variable to flip its sign. For example: if you have a variable x = 12, then -x is -12.
+It's also worth noting that `x - y` and `x   -      y` are the same. After a single space, extra spaces are ignored, allowing for more flexible formatting. What matters is that, for `-` to be considered subtraction, it must have at least one space before and after it.
 
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of *all* objects.
