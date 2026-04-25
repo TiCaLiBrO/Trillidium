@@ -4,12 +4,19 @@ Languages like Python, Rust, Go, C, and Lua have inspired Trillia in many ways.
 If using other languages to describe Trillia, think Rust's safety mixed with Go or Lua's simplicity.
 
 The language is designed with a strong focus on simplicity, making it often resemble pseudo-code.
+
 Convergent programming is a strong design choice in Trillia that makes it easier to read and debug, and unifies Trillia into a common dialect.
+
 Without imported libraries, Trillia is extremely lightweight, making it ideal for rapid onboarding.
+
 There is a focus on eliminating boilerplate and inconsistencies, meaning that edge cases are rare and predictable, and programmers focus more on the actual code than they do on fighting with the language.
+
 Perfect parallelism is automatically prescribed to your code. The way you write your code will implicitly change the way it gets parallelized.
+
 Trillia is fully deterministic, safe, and minimal first, and provides escape hatches second. This ensures that you do not shoot yourself in the foot, while still giving you a great deal of power.
+
 The term "algorithmic language" can be used to describe Trillia, as it is incapable of unbounded loops without importing them. There is a strong focus on bounded design and minimizing complexity.
+
 Reactivity and pointers are core features of Trillia, automatically updating data and allowing signalling.
 
 The base language does not contain any non-deterministic functions. This means that there is no access to specific hardware used that can vary per run, and there are no functions that rely on input or randomization. Such features are quarantined within libraries, giving you the option to add those features if needed.
