@@ -20,8 +20,6 @@ An ideal Trillia implementation would be a boostrapped Trillia that compiles to 
 
 **An Overview of the language:**
 
-//////////
-
 # 1. Whitespace
 
 Trillia is whitespace significant. Indentation replaces the need for brackets, and newlines replace the need for semicolons. Minimalism is prioritized.
@@ -36,6 +34,8 @@ Spaces are important and enforced. Writing `a+b` means something entirely differ
 The spacing of an operation matters. `x - y` is subtraction "X minus Y", `x-y` is range "X to Y", and `-x` is negative "Negative X". These all use the same symbol, but in different contexts. The spaces before and after the `-` sign are what give it different meanings. `x-` is not a built-in operator, but you can define it yourself.
 
 It's also worth noting that `x - y` and `x   -      y` are the same. After a single space, extra spaces are ignored, allowing for more flexible formatting. What matters is that, for `-` to be considered subtraction, it must have at least one space before and after it.
+
+////
 
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of *all* objects.
