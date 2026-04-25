@@ -108,13 +108,13 @@ There are four keywords that change which ways your data is allowed to be altere
 
 * The `relative` will only allow your data to be relatively reassigned or altered, but not assigned.
 
-* The `mutable` will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
+* The `mutable` will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve the quality of life.
 
 ## 2.4 Declarations
 
-If you wish to claim memory before assigning it a value, you can declare without assignment. It's reccomended that you use `;` for clarity, signalling that you intentionally did not provide assignment.
+If you wish to claim memory before assigning it a value, you can declare without assignment. It's recommended that you use `;` for clarity, signalling that you intentionally did not provide an assignment.
 
-    int32 x;
+    integer32 x;
 
 If you have a variable with mutability restrictions, you can use a declarative line on that variable with a new mutability rule to specify a deliberate change in mutability.
 
@@ -122,9 +122,9 @@ If you have a variable with mutability restrictions, you can use a declarative l
 
 If you wish to cast the type and or size of a variable into another type, you can also do so by using a declarative line.
 
-    nat32 x;
+    natural32 x;
 This is only possible if the value can be perfectly preserved. Floating points can error.
-It is highly recomended that you use the `rat` rational type to be able to represent values perfectly.
+It is highly recommended that you use the `rat` rational type to be able to represent values perfectly.
 
 ## 2.5 Hard Variables
 
@@ -137,7 +137,7 @@ Hard variables are much slower to assign or alter, but they are saved variables 
 
 All `hard` variables persist across multiple runs of a program. This is their main purpose. They are essitially just a more user-friendly and variable-consistent way of doing write() operations.
 
-Writing to disc space is usually very slow compared to register space. It's recommended that you make `hard` variables either read-only or read-mostly.
+Writing to disk space is usually very slow compared to register space. It's recommended that you make `hard` variables either read-only or read-mostly.
 Here, "read-mostly" just means that read operations occur more often than write operations.
 The `hard` variables are made even slower to modify by having automatic safety measures in place to prevent corruption.
 During any change to a `hard` variable, a three-step process begins.
@@ -147,25 +147,26 @@ And finally, the new copy is freed from memory.
 
 A special case:
 
-If you use `hard` + `const`, you get a literal value that is treated as a variable.
+If you use `hard` + `constant`, you get a literal value that is treated as a variable.
 
-    hard const rat32 PI = 3.1415
+    hard constant rational32 PI = 3.1415
 Here, the value of pi is stored in your program at compile time. It's very similar to `#define` in C.
 
 # 3. Types
-Different data types are used best for different tasks. 
-Trillia has four numeric types: `nat`, `int`, `rat`, and `float`. All of these are suffixed by the number of bits used to represent them.
+Different data types are best for different tasks. 
+Trillia has four numeric types: `natural`, `integer`, `rational`, and `float`. All of these are suffixed by the number of bits used to represent them.
 For example, natX is most often in the forms `nat`, `nat8`, `nat16`, `nat32`, and `nat64`.
 
 ## 3.1 Numerics
 
-Natural numbers `nat` are what most other languages call `unsigned integer`. The `nat` type is the most basic form of numeric data type.
+`natural` numbers are what most other languages call `unsigned integer`. The `natural` type is the most basic form of numeric data type.
 
-Integers `int` allow negative numbers to be represented.
+`integer`s allow negative numbers to be represented.
 
-Rational numbers `rat` are actually an array of two numbers, a divisor and denomonator, that exist as a reduced fraction in memory. The size represents the size of both elements in the array.
+`rational` numbers are actually an array of two numbers, a divisor and a denominator, that exist as a reduced fraction in memory. The size represents the size of both elements in the array.
 The rational type is preferred over floating point where precision is more valuable than speed.
 
+////////////XXXXX////////////
 Floating point numbers `float` are exactly the same as floats usually are in other languages.
 
 Next up is the Scalar type `scal`, which is also notated in bits.
@@ -179,9 +180,9 @@ Unionization is done via typing an object multiple times in a single assignment 
 This will always choose the first listed type (int32) if possible to represent the value of x, and then any other values are checked if it's not possible. The priority goes from left to right.
 
 ## 3.3 Built-in Symbolic Types
-The next types are non-numeric, and have only one size.
-`char` is 8 bits, used to represent characters in strings. They use ascii.
-`bool` only has two literal values, `True` or `False`.
+The next types are non-numeric and have only one size.
+`character` is 8 bits, used to represent characters in strings. They use ASCII.
+`boolean` only has two literal values, `True` or `False`.
 `Undefined` is the default value of any variable that has been declared but not assigned. If a read occurs on a value that is `Undefined`, it will cause an error.
 `None` is similar to `Undefined`, except it is used to explicitly return an empty value. This doesn't crash upon read.
 
@@ -189,7 +190,7 @@ The next types are non-numeric, and have only one size.
 The vector types are: vecX, arrayX, listX, and threadX.
 Vectors are suffixed not by number of bits, but instead by number of *elements* that they have. For example, `array4` holds 4 elements.
 Vectors exist in two flavors: `array`s and `list`s.
-Using the `vec` type, Trillia will create an `array` if possible, and a `list` if not. The `vec` type is best to use in most instances.
+Using the `vector` type, Trillia will create an `array` if possible, and a `list` if not. The `vec` type is best to use in most instances.
 Using the `array` type, Trillia will attempt to create an `array`, and if the elements do not conform to the rules of arrays, an error will occur.
 Using the `list` type always creates a linked list.
 The `thread` type is a special type of vector. More about it later in the Threads section.
@@ -198,7 +199,7 @@ Declaration is done using the `[]` symbols
 
     my_list = [1, 2, 3]
 
-    array3 int32 my_array = [1, 2, 3]
+    array3 integer32 my_array = [1, 2, 3]
 
 In Trillia, *everything* is an `array`. Let's restate that.
 In Trillia, ***everything*** is an `array`.
@@ -209,7 +210,7 @@ You can also turn variables into true arrays very easily by using `array` functi
     (x)append(4)
     # now x = [12, 4]
 
-Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself, and specify their rules.
+Trillia doesn't support sets, tuples, dictionaries, maps, or any other type of iterable. You make them yourself and specify their rules.
 There are many built-in functions that are best used for sets, such as `union()` or `intersection()`, and guidelines on which functions to use, but no hard rules.
 
 ## 3.4 Custom Symbolic Types (Enumerations & Dictionaries)
@@ -253,9 +254,9 @@ If there are multiple disconnected brackets in a larger expression, if your vers
 
 Think of an expression like this: `(1 + 2) + (3 + 4)`
 
-In such a case, `(1 + 2) + (3 + 4)` resolves to `(3) + (7)` in a single step, because both sides were solved simultaneusly.
+In such a case, `(1 + 2) + (3 + 4)` resolves to `(3) + (7)` in a single step, because both sides were solved simultaneously.
 
-If there are more brackets to solve in parallel than there are cores on your computer, left-most brackets are resolved first to preserve left-to-right execution.
+If there are more brackets to solve in parallel than there are cores on your computer, the left-most brackets are resolved first to preserve left-to-right execution.
 
 ## 4.3 Arithmetic Operator Symbols
 For Arithmetic, Trillia has seven binary operations. You do not have to import a math library to access `pow()`, `sqrt()`, or `log()`; these operations are built into the language as symbols, and are intuitive to use.
@@ -277,7 +278,7 @@ For Arithmetic, Trillia has seven binary operations. You do not have to import a
 `\\` Logarithmatization (Logarithms)
 
 The symbols chosen for roots and powers are the same as the symbols for multiplication and division. The symbol for logarithms is just a mirroring of the symbol for roots.
-With a system like this, you don't have to remember individual symbols, you just need to remember rules.
+With a system like this, you don't have to remember individual symbols; you just need to remember rules.
 The logic is extendable. You could imagine tetration being written as ***, and its root and log equivalent to be written as /// and \\\ respectively.
 Such operations aren't supported by Trillia due to memory restraints on most computers. Even something as simple as 5 *** 10 would blow the stack on most computers.
 
@@ -303,16 +304,16 @@ Multiplication is commutative.
 
 Division always returns a rat type or a float type if the mathematical result would return a fraction that cannot be expressed as an integer.
 
-    int a = 2
-    int b = 3
+    integer a = 2
+    integer b = 3
     a = a / b
 This expression would error because `2 / 3` gives a non-integer return value.
 To avoid this, there are different types of division.
 
 To round your division up, down, or nearest, use `/^`, `/_`, and `/~` respectively.
 
-    int a = 2
-    int b = 3
+    integer a = 2
+    integer b = 3
     a = a /  b     # This errors because a is an integer and a / b returns a rational.
     a = a /^ b     # a = 1
     a = a /_ b     # a = 0
@@ -342,7 +343,7 @@ Roots are written in the same way, where the exponent is the modicand.
 This can seem slightly confusing at first because common notation puts the exponent on the left for roots, but in Trillia, the modicand is always the exponent.
 
     100 // 2 = 10
-    25 // 2 = 5
+    25  // 2 = 5
 This can be read as *"twenty five to the root of two is five"*
 Also, notice that with this notation, there is much more freedom than `sqrt()` and `cbrt()` because you are not limited. You can choose any exponent that you want, not just 2 or 3.
 
@@ -367,33 +368,17 @@ The `//@` operator is basically like an *`is_square()`* or *`is_cube()`* functio
 Logarithms are the same as roots, except the return value and the modicand are swapped.
 
     100 \\ 10 = 2
-    25 \\ 5 = 2
+    25  \\ 5  = 2
 
-To get natural logarithms, you can use the built-in `EULER` constant as the modicand
+To get natural logarithms, you can use the built-in `E` constant as the modicand
 
-    10 \\ EULER = 2.30258509299
+    10 \\ E = 2.30258509299
 
 The same variant operators exist for logarithms as do exist for division and roots. `\\^`, `\\_`, `\\~`, `\\%`, `\\@`.
 The `\\^`, `\\_`, `\\~` operators round as expected.
 
     17 \\@ 12 = False
-    10 \\% 3 = 1
-
-Incrementation and Decrementation:
-As a final note on arithmetical operators, the suffixes `+` and `-` are able to be used for adding or subtracting 1 from a value.
-
-    10+ = 11
-    79- = 78
-
-You can chain these together as long as it's only `+` or only `-`.
-
-    3++  = 5
-    0--- = -3
-
-To prevent redundancy, and to increase readability, chaining `+` with `-` directly is not allowed.
-
-    10++--- # this gives an error, because 10++--- can be refactored into 10-.
-Under the hood, chaining `+`s or `-`s in long strings is simply condensed into addition. So `5+++++` is just `5 + 5` to prevent wasted operations.
+    10 \\%  3 = 1
 
 Positive and Negative:
 As a prefix, `+` makes what it affects always positive. It is an absolute value unary operator.
@@ -467,7 +452,7 @@ Using `!` as a prefix changes a component of a logical statement to be the inver
 Using `!` as a suffix returns the factorial of that number. So if `g = 4`, then `g!` returns `24`.
 
 ## 4.6 Relative Assignment Lines
-In Trillia, for any line of code that starts with a variable, and does not assign or reassign that variable, the variable is relatively assigned.
+In Trillia, for any line of code that starts with a variable and does not assign or reassign that variable, the variable is relatively assigned.
 
     a + 7 * 2
 This takes `a`, adds `7` to it, then doubles it. That's the new value of `a`. If there are multiple variables on a line, such as in `a * b`, then only the left-most variable is reassigned.
@@ -545,7 +530,7 @@ Trillia has signals. The when keyword allows you to set a condition that when `T
 
     x = Saturday
     }
-The `when` keyword requires `{}`s. The braces give signal lifetime. When you exit the braces, the condition is no longer being listened for.
+The `when` keyword requires `{}`s. The braces give a signal lifetime. When you exit the braces, the condition is no longer being listened for.
 
 The `when` keyword can be paired with `return`. This means that, much like a `function`, you will be returned back to where you were when the `when` block was called.
 If `when` is not paired with a `return` keyword, it will implicitly resume code execution at the place it was where the when keyword was activated.
@@ -580,7 +565,7 @@ This loop repeats `10` times, then automatically ends.
 The `repeat` keyword is especially useful when you want to preserve D.R.Y. (Don't Repeat Yourself).
 
 The second and third looping keywords are `while` and `until`.
-The `while` keyword is the same as the `if` keyword except it creates a loop. Every time that loop starts over, the condition is asked again.
+The `while` keyword is the same as the `if` keyword, except it creates a loop. Every time that loop starts over, the condition is asked again.
 The `until` keyword flips the condition's `True` and `False`. `until` is to `while` what `unless` is to `if`.
 
     while x > 10
@@ -637,9 +622,9 @@ This prints out:
 >>> if x /@ 2 where x = 2 returns True to if
 >>> then x / 2 where x = 2 relatively assigns x = 1
 >>> while x != 1 where x = 1 returns False to while
-It's very verbose, and goes through every change for which x is either queried or changed.
+It's very verbose and goes through every change for which x is either queried or changed.
 
-Using the `?` operator at the end of a line, with a space between it and the last object prints out every evaluation and change that occurs on that line.
+Using the `?` operator at the end of a line, with a space between it and the last object, prints out every evaluation and change that occurs on that line.
 
     x = 3
     while x != 1
@@ -673,12 +658,12 @@ There are four types of reactive variables in Trillia:
 
 Address Pointers: also called Raw Pointers, are the same as pointers in C. Unlike C, however, they are dereferenced by default.
 They point to an address of another variable or data structure, and return the value that's held there. Address Pointers are by far the rarest of the four reactives.
-Address Pointers are called using the `&:` prefix. You can read `&` as "Address" and `:` as "Pointer". It's literally read in code the same as it's named in English.
+Address Pointers are called using the `&:` prefix. You can read `&` as "Address" and `*` as "Pointer". It's literally read in code the same as it's named in English.
 
-    x = &:y
+    x = &*y
 or alternatively:
 
-    x &:= y
+    x &*= y
 This can be read as "x is an addres-pointer to y"
 
 Reactive Pointers: also called Identity Pointers, are similar to Address Pointers, except they never lose track of what they point to.
@@ -768,9 +753,9 @@ To create an object by hand, usually, you will want to create a dictionary with 
     player_equipped_armor = "iron armor"
     player = [[`health`, :player_maximum_health], [`mana`, :player_maximum_mana], [`armor`, :player_equipped_armor]]
 
-This way, every object is crafted by hand, and everything is an `array`, so there is no learning curve. You create arrays in such a way where everything is transparent.
-Inheritence is done through reactivity. This is not only clearer, but also faster to compute if done right, and gives more flexability. You can use pointers, pointer-reactives, or cache-reactives to get the exact result that you want.
-There is no special `struct` keyword, or special object-oriented syntax. You don't even have to use a dictionary.
+This way, every object is crafted by hand, and everything is an `array`, so there is no learning curve. You create arrays in such a way that everything is transparent.
+Inheritance is done through reactivity. This is not only clearer, but also faster to compute if done right, and gives more flexibility. You can use pointers, pointer-reactives, or cache-reactives to get the exact result that you want.
+There is no special `struct` keyword or special object-oriented syntax. You don't even have to use a dictionary.
 It's just a useful tool that helps you get fast lookups while still being highly readable.
 
     player = [:player_maximum_health, :player_maximum_mana, :player_equipped_armor]
@@ -779,7 +764,7 @@ This is what it looks like without it being a dictionary. The only problem is th
 That's really all there is to it. Objects by hand.
 
 # 9. Automatic Garbage Collection
-Trillia's Garbage Collector is extremely simple, and actually so lightweight, that it slightly improves performance rather than impeding it. Here's how:
+Trillia's Garbage Collector is extremely simple, and actually so lightweight that it slightly improves performance rather than impeding it. Here's how:
 Trillia's has two Garbage Collectors, and they are entirely separate entities. One of them is entirely designed for non-reactive objects, while the other only handles reactive objects.
 The Primary Garbage Collector is compile-time only, and the only thing that it does is insert `free()` operations where it can prove that it's safe to do so.
 It frees objects before they are normally freed in the program, either by exiting their scope or when a manual `free()` operation is used.
@@ -788,52 +773,52 @@ This means that the Garbage Collector never makes your program slower - all data
 The Garbage Collector ONLY negatively affects compile time, and it positively affects runtime very slightly by making it easier for the computer to find free space to define new data without cache-misses.
 The Primary Garbage Collector has no runtime overhead.
 
-As for the second Garbage Collector - its main purpose isn't actually to collect garbage at all. It's actually a safety-checker for reactive dependecies, that happens to also be perfect for Garbage Collection.
+As for the second Garbage Collector - its main purpose isn't actually to collect garbage at all. It's actually a safety-checker for reactive dependencies, that happens to also be perfect for Garbage Collection.
 Since the Reactive Safety Checker happens to already be keeping track of which objects point to which other objects, it can mark and destroy objects that are no longer being referenced.
-This Garbage Collector technically does take a lot of resources to maintain, however, it has multiple jobs, and the actual Garbage Collection part is a very miniscule module build ontop of its other tasks.
+This Garbage Collector technically does take a lot of resources to maintain; however, it has multiple jobs, and the actual Garbage Collection part is a very minuscule module built on top of its other tasks.
 So ultimately, the Secondary Garbage Collector has very little negative effect on performance when only considering the garbage collection portion of it.
-This Garbage Collector uses reference counting, and eliminates objects whose reference count reaches 0. It requires both compilation time and runtime.
+This Garbage Collector uses reference counting and eliminates objects whose reference count reaches 0. It requires both compilation time and runtime.
 
 # 10. Manual Garbage Collection
 The `{}` braces are used for scope and namespace. Any object that was created inside of a scope will die at or before reaching the end of its scope.
 By default, the `{}` will free() any objects that reach its end. The entire program has a single global scope, which is like an implicit `{}` that surrounds everything.
-All functions and threads also have implicit `{}` scope that ends at the return or the end of the function.
+All functions and threads also have an implicit `{}` scope that ends at the return or the end of the function.
 
-If you use `delete {}` then it will delete() all objects that were created within the scope instead of freeing them.
+If you use `delete {}`, then it will delete() all objects that were created within the scope instead of freeing them.
 
 The free() function frees data so the address may be used by other objects instead.
 x = 12
 free(x)
 This destroys x, and frees its address. The value 12 still exists at that memory location, but the Undefined flag is placed on any new object that claims that register.
-This means that no new object that claims the memory address that x had, can look at the value that x had.
+This means that no new object that claims the memory address that x had can look at the value that x had.
 
 The zero() function is a function that essentially just wipes the bits of an object. This is useful for resetting an object before it's usurped (more on usurpation later)
 
 The delete() function is the zero() function followed immediately by the free() function. It eliminates all traces of the values that were stored there and then lets that space be used.
 This is a good way to get rid of any information that's potentially vulnerable to hacking.
 
-If you use the free() or delete() keywords, the GC will assume you know what you're doing, and will not handle that data automatically.
+If you use the free() or delete() keywords, the GC will assume you know what you're doing and will not handle that data automatically.
 If you want some data to persist throughout the entirety of a program, instead of being garbage collected during program execution as soon as possible, you can declare it in global space, and manually free it at program end.
 This is a good way to ensure that your data isn't constantly slowing down your program while it's being freed. However, it comes with the cost of wasting extra memory during program run.
 
-The is_free() function is used with an address as the input, and it returns whether that address is available for the taking or not.
+The is_free() function is used with an address as the input, and it returns whether that address is available for taking or not.
 
 ## 10.1 Usurpation and Manual Address Assignment
 
-During Declaration of an object, you can use the @ symbol to manually set where that data is supposed to go.
+During the declaration of an object, you can use the @ symbol to manually set where that data is supposed to go.
 int32 @1234 x = 24
 This creates variable x at address 1234, and sets the value to 24.
 
 The @ operator can be used to usurp other objects.
 int32 y = 30
 int32 @&y x = y
-The '@&y' is read as "at the address of y"
-This "creates" a new variable x, in the space where y is, killing y, then it "assigns" x's value to y's value.
+The '@&y' is read as "at the address of y."
+This "creates" a new variable x in the space where y is, killing y, then it "assigns" x's value to y's value.
 What this does, under the hood, is essentially just renaming y. And there's an optimisation that happens with "@&y" + "= y", which is just that x is never given the Undefined flag.
 If we don't say "= y" at the end, the variable x will steal the position that y had without being given access to its value. X will be flagged as Undefined.
 Destroying objects by taking their place is called "usurpation".
 
-The ()evict() and ()displace() functions are also useful too.
+The ()evict() and ()displace() functions are also useful.
 (q)evict(r) is a function that creates q at r's position, and tells r to take a hike. This moves r to a new position.
 (q)evict(r, s) is a function that creates q at r's position, and tells r to take a hike. This moves r to a new position. Object r now goes to address s.
 To chain evictions together, you can do so with the function-chaining syntax: (a)evict(b)evict(c)evict(d). d is evicted at the end, and will go wherever is available.
@@ -845,8 +830,8 @@ You can use these special functions during declaration to place a variable in me
 int32 evict(y)evict(z) x = 32        # The exact syntax here is a bit undecided, but this is the idea.
 
 # 11. Functions
-Functions in Trillia, are blocks of code that can do a specific task whenever it is called.
-Here are an examples of function definitions:
+Functions in Trillia are blocks of code that can do a specific task whenever it is called.
+Here are examples of function definitions:
 
 hello_world() =
     print("hello world")
@@ -866,7 +851,7 @@ collatz(n) =
 
 Functions can be right-handed, left-handed, or ambidextrous.
 
-Right-handed functions are return-only and have no side-effects.
+Right-handed functions are return-only and have no side effects.
 
 Left-handed functions are what most other computer programming languages call 'methods'. They alter an object
 
@@ -875,7 +860,7 @@ Ambidextrous functions alter an object, but have right-handed inputs that affect
 For relative assignment lines:
 x + 5
 You can use left-handed functions to relatively assign what is to the left. This chains naturally, and keeps the statement as an assignment line.
-In Trillia, left-handedness is associated with augmentation of values, while right-handedness is associated with having no side-effects.
+In Trillia, left-handedness is associated with augmentation of values, while right-handedness is associated with having no side effects.
 This is the dichotomy between pure functional programming vs object augmentation.
 Trillia allows and encourages both, because there are times when one is slightly faster for optimization, or times when one is more readable.
 Trillia gives you the choice, and you can change between these styles freely.
@@ -920,10 +905,10 @@ Threads, like functions, can be right-handed or left-handed. Except with threads
 For threads, right-handed inputs also mean that the input is locally copied to each thread.
 
 For left-handed inputs, it means that the input is globally shared among the threads, and it will undergo an augmentation queue.
-This is not reccomended, but for some tasks it may be difficult to avoid.
+This is not recommended, but for some tasks it may be difficult to avoid.
 
 All variables that are defined inside of a threaded function are defined as local variables by default.
-To make a variable only belong to one thread, or to share them often breaks determinism, so it's very much discriminated against, but it is allowed. Here's how:
+To make a variable only belong to one thread, or to share them, often breaks determinism, so it's very much discriminated against, but it is allowed. Here's how:
 thread10 my_thread =
     if thread = 1
         x = 12
@@ -932,16 +917,16 @@ This only ever creates the variable x for the first thread. variable x is never 
 If another thread is to access that thread's x variable, they must say:
 if x in thread[1] > 10
     do some code
-They must explicitly mention which thread that variable belongs to. This can absolutely cause problems if not paired with awaits.
+They must explicitly mention which thread the variable belongs to. This can absolutely cause problems if not paired with awaits.
 
-If a const variable is accessed in threaded function, that variable is read-only, which means that there will be no queues required to access it.
+If a const variable is accessed in a threaded function, that variable is read-only, which means that there will be no queues required to access it.
 
 The await keyword passes a core along to another thread if there are other threads available to adopt that core.
 
 You can create a busy loop by using when + await to do busywork while waiting for a signal.
 
-Using left-handed inputs allows you to mutate objects in global scope. But, with a few rules. And normally, you are not allowed to write to global scope.
-When an object enters a threaded function as a left-handed input, it tells the program that the object belongs to that function, and is not allowed to be mutated by anything else while the thread is active.
+Using left-handed inputs allows you to mutate objects in the global scope. But with a few rules. And normally, you are not allowed to write to the global scope.
+When an object enters a threaded function as a left-handed input, it tells the program that the object belongs to that function and is not allowed to be mutated by anything else while the thread is active.
 To access the object, you must do this:
 thread3 (meme)super_cool() = 
 if thread = 1
@@ -950,7 +935,7 @@ if thread = 1
 Something *like* this is how it should work. This still isn't enough to ensure determinism, but it is a start.
 
 The only way to make this work is if we have a model that gives permission like hot potato, deliberately, OR assign one thread to be the
-only thread that owns an object, and feed that thread other thread's info as needed.
+only thread that owns an object, and feeds that thread the other thread's info as needed.
 
 
 
@@ -978,26 +963,26 @@ await read is also very likely discouraged because you can make constants instea
 Maybe await write should actually also let the thread continue as far as it can go before it has to mutate that awaited variable.
 Once it encounters any code inside the thread that changes the awaited variable, it waits for the writer to change it before making the change.
 
-You can await multiple things, but the order that the awaits have to be resolved in is in FIFO order.
+You can await multiple things, but the order in which the awaits have to be resolved is in FIFO order.
 await read of x in thread[2]
 await read of y in thread[2]
-here, x has to be read first, then y. 
+Here, x has to be read first, then y. 
 
 
 
-There is also permit read and permit write
+There is also a permit read and a permit write
 x = 10
 permit read of x from my_function
-This is usually used for global scope. It's essentially an ownership model.
-To "undo" it, you simply says "permit read of x"
+This is usually used for a global scope. It's essentially an ownership model.
+To "undo" it, you simply say "permit read of x."
 
 
 
 Thread object ownership model. To ensure deterministic writing capabilities, any non-local object to a threaded function must be imported.
-Importing higher-scope-objects is done via left-handed thread inputs. (a)my_thread makes the object a become owned by the threaded function.
-The object a cannot be altered from any other source while the threaded function is still ongoing.
+Importing higher-scope objects is done via left-handed thread inputs. (a)my_thread makes the object `a` become owned by the threaded function.
+The object `a` cannot be altered from any other source while the threaded function is still ongoing.
 
-Any object that is owned by a threaded function, must undergo a second step of being owned by a specific thread.
+Any object that is owned by a threaded function must undergo a second step of being owned by a specific thread.
 permit write unto a by thread[6]
 
 
@@ -1032,7 +1017,7 @@ In C, this is actually even less intuitive. Is it (x = y) and then (y = z), or i
 I'll tell you. It goes from right to left.
 In Trillia, the first = is an assignment of x, while the second one is a comparative operator.
 x = y > z
-Might make it easier to understand. You can use `if` to be more clear.
+Might make it easier to understand. You can use `if` to be clearer.
 x = if y = z
 Here, the `if` actually gets the value of the expression as True or False, and that is then returned to x.
 Maybe `if` should be enforced here for clarity. hmmm...
@@ -1048,8 +1033,8 @@ If you have an if statement like this:
 if a = b
 then c
 
-here, normally, c would just be a variable whose value is returned into the void (causing a redundancy error).
-However, for conditionals like if and unless; if there is a value that's returned into the void, it's actually returned back to the if statement itself.
+Here, normally, c would just be a variable whose value is returned into the void (causing a redundancy error).
+However, for conditionals like if and unless, if there is a value that's returned into the void, it's actually returned to the if statement itself.
 This way, you can have:
 a = if b = c then True else False
 Normally, True and False would be returned to no object, but because they belong to an if block, they're returned to it instead.
@@ -1057,7 +1042,7 @@ This will still cause an error if nothing is there to catch the returned value o
 If you're using an "if" as an assignment, you can chain many "if"s together, but every if must be paired with an else statement to prevent missing assignments, and each branch must give a return value back to the if.
 You can have a = if b = c, and that will be valid because b = c is returned to if as True or False. The final resolved value that is returned to the if when the expression is done with branching is the value that if returns back to the assignment operator.
 
-a cool thing about the = inside of if statements is that, oddly, it actually CAN be used for assignment.
+A cool thing about the = inside of if statements is that, oddly, it actually CAN be used for assignment.
 a = if b = c
 This is a valid statement. It defines a based on whether b and c are equal.
 
@@ -1065,7 +1050,7 @@ This is a valid statement. It defines a based on whether b and c are equal.
 
 
 # 15. Libraries and Imports
-Standard library uses automatic imports as needed, everything else needs manual imports
+Standard library uses automatic imports as needed; everything else needs manual imports
 The unsafe library is the only official library that is not given by default. It allows you to do some extra things like revive()
 
 # 16. Trillia on C or C++
@@ -1096,8 +1081,8 @@ A more customized way of creating duck-typing or unions
 Talk more about function chaining. Work out the kinks in the system (a)append(b)intersection(c)
 
 Go through a thorough process of dissecting what threads really need to ensure determinism.
-1. Left handed threads are necessary for the threaded function to claim ownership of global objects.
-2. you need to grant permitions to change a thread-owned object before you can mess with it. Each object can be tossed around separately
+1. Left-handed threads are necessary for the threaded function to claim ownership of global objects.
+2. You need to grant permissions to change a thread-owned object before you can mess with it. Each object can be tossed around separately
 3. Really understand if this is deterministic or not. Really get into the weeds. If it's not, then make a single thread only be able to affect the object, and disallow permission passing.
 permit write to x by thread[y]. Permissions must be one at a time. Once the thread is destroyed, permission is automatically granted globally.
 
@@ -1114,7 +1099,7 @@ Think about dictionaries a bit more. What exactly are they? Are they definitions
 
 Talk about strings. We literally just breeze past them.
 Talk about comments.
-talk about ()func() syntax. It's chosen because it's more consistent. A beginner doesn't have to think about a.b(c) syntax. it's always (a)b(c).
+talk about ()func() syntax. It's chosen because it's more consistent. A beginner doesn't have to think about a.b(c) syntax. It's always (a)b(c).
 
 
 
