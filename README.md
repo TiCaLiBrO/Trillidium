@@ -742,26 +742,9 @@ You can also use the `@` operator to get whatever's at the address of a literal 
     print(@1234)
 This prints whatever value can be found at address `1234`.
 
-# 8. No Object Oriented Programming or Structs
-Yes. That's a good thing. Trillia strives for absolute simplicity, and because we have vectors, and reactives, that's all we need in order to make objects by hand.
-This section is not dedicated to a feature, rather, the lack of it.
+# 8. Object Oriented Programming or Structs
 
-To create an object by hand, usually, you will want to create a dictionary with reactives that point to other variables in your code.
-
-    player_maximum_health = 100
-    player_maximum_mana = 20
-    player_equipped_armor = "iron armor"
-    player = [[`health`, :player_maximum_health], [`mana`, :player_maximum_mana], [`armor`, :player_equipped_armor]]
-
-This way, every object is crafted by hand, and everything is an `array`, so there is no learning curve. You create arrays in such a way that everything is transparent.
-Inheritance is done through reactivity. This is not only clearer, but also faster to compute if done right, and gives more flexibility. You can use pointers, pointer-reactives, or cache-reactives to get the exact result that you want.
-There is no special `struct` keyword or special object-oriented syntax. You don't even have to use a dictionary.
-It's just a useful tool that helps you get fast lookups while still being highly readable.
-
-    player = [:player_maximum_health, :player_maximum_mana, :player_equipped_armor]
-This is what it looks like without it being a dictionary. The only problem is that you need to index it manually, and if elements move around in the array, it could be difficult to maintain.
-
-That's really all there is to it. Objects by hand.
+========================================= UNFINISHED ==================================================
 
 # 9. Automatic Garbage Collection
 Trillia's Garbage Collector is extremely simple, and actually so lightweight that it slightly improves performance rather than impeding it. Here's how:
