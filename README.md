@@ -35,13 +35,11 @@ The spacing of an operation matters. `x - y` is subtraction "X minus Y", `x-y` i
 
 It's also worth noting that `x - y` and `x   -      y` are the same. After a single space, extra spaces are ignored, allowing for more flexible formatting. What matters is that, for `-` to be considered subtraction, it must have at least one space before and after it.
 
-////
-
 # 2. Unified Assignment Operator
 In Trillia, the `=` sign is used for assignments of *all* objects.
 
-Variables, Control Structures, Vectors, Types, Reactives, Functions, and Threads are *all* given value using the `=` Assignment Operator.
-There are *no* objects in Trillia that can be assigned value without the Assignment Operator. And this list of objects is *the entire list of all things that can be created in Trillia*.
+Variables, Control Structures, Vectors, Types, Reactives, and Functions are *all* given value using the `=` Assignment Operator.
+There are *no* objects in Trillia that can be assigned a value without the Assignment Operator. And this list of objects is *the entire list of all things that can be created in Trillia*.
 
 ## 2.1 Variable Assignment
 
@@ -49,62 +47,68 @@ Variables are assigned using a variable name, followed by the `=` sign, then the
 
     x = 10
 
+Like many other languages, chaining assignments is unintuitive and not recommended, but a demonstration can give insight.
+
+    a = b = c
+Is ***bad code***. This demonstration is just to show how it works.
+The `=` sign works identically to all other operations. It takes the right-handed operand as a copy, and alters the left-handed operand, then pipelines the left-handed operand forward.
+In the statement `a = b = c`, `a = b` happens first, reading the value of `b` and changing `a`'s value. The expression is now simplified. `a = c` is next. We first put `b`'s value into `a`, and now we're putting `c`'s value into `a`. We do this until the line is finished. Notice that we only ever change `a` and read from `b` and `c`. In Trillia, we call `a` an *Ordinal* component, and `b` and `c` are *Cardinal* components.
+
+We'll do another example with addition to make it clearer: `x + y + z`. Start with `x`, then add `y` to it. This changes `x` directly, but the `y` is Cardinal, so the expression only reads `y`, and never alters it. Then we add `x + z`. This entire expression is a relative assignment of `x`. Notice that in both examples, we took the left-most object and continuously altered it by performing operations on it and moving it rightward. All operations in Trillia behave this way, and assignment is no exception.
+
+Notice, though, that we were only able to change one object per line. If you wish to do multiple assignments on a single line, you should either use `,` or `;` to separate assignments.
+
+    a = b; b = c
+This is actually two lines of code just made to look like a single line. It is `a = b`, and then a second line `b = c`. This one has order. We put `b`'s value into `a` first, and then we put `c`'s value into `b`. We read from `b` in the first line, then write to `b` in the second.
+
+//////////
+
 To swap two variables, you can use `,` commas on both sides of the `=` sign
 
-    a = 3
-    b = 7
     a, b = b, a
 This swaps the value of a and b.
 
-You cannot do chained assignments.
-
-    a = b = c
-Is not allowed because it's ***bad code***. This is prevented to avoid confusion and maximize clarity.
-If you wish to do multiple assignments on a single line, you must either use `,` or `;` to separate assignments.
-
-    a = b; b = c
-or
-
     a, b = b, c
+This puts the value of `b` into `a`, and the value of `c` into `b` at the same time. The items to the right of the `=` sign are copies of the original values.
 
-You must either have an equal number of left-hand and right-hand elements, OR have many left-hand elements and only one right-hand element.
+You can also have many left-hand elements and only one right-hand element.
 
 Having many left-hand elements and one right-hand element will place the right-hand element's value into all left-hand containers.
 
     a, b, c, d, e = f
-Here, a, b, c, d, and e all are assigned to value of f.
+Here, a, b, c, d, and e are all assigned the value of f.
 
 ## 2.2 Strict Types and Sizes
 
 If you don't use types, the variable will automatically promote or change type readily as needed. You can use strict types and sizes to ensure that the variable does not change type or size.
 
-    int32 x = 10
+    integer32 x = 10
 
 If you use a type without a size, the type of the variable will remain consistent, but size promotion and demotion will occur when necessary.
 
-    int x = 120     # this is an 8 bit integer by default because it's the smallest size that can represent this value.
-    x = 300         # It was promoted to a 16 bit integer to be able to represent this value.
+    integer x = 120    # this is an 8-bit integer by default because it's the smallest size that can represent this value.
+    x = 300            # It was promoted to a 16-bit integer to be able to represent this value.
 
-If you use the `scal` type (short for scalar), you can set a size but not a type. This is the same as a `union` in C.
+If you use the `proto` type, you can set a size but not a type. This is the same as a `union` in C.
 
-    scal64 x = 4800
-    x = -0.3333
+    proto64 x = 4800
+    x = -0.(3)
 
-You can use the `scal` type without a size to explicitly state that a variable is intentionally dynamic type and size instead of being a hastily programmed prototype.
+You can use the `proto` type without a size to explicitly state that a variable is of an intentionally dynamic type and size instead of being a hastily programmed prototype.
 
-    scal x = "hello"
+    proto x = "hello"
 
 ## 2.3 Mutability
 
 There are four keywords that change which ways your data is allowed to be altered.
 
-* The `const` keyword, alternatively written as `constant`, will prevent your data from being altered.
+* The `constant` will prevent your data from being altered.
 
-* The `stat` keyword, alternatively written as `static`, will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
+* The `static` will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
 
-* The `rel` keyword, alternatively written as `relative`, will only allow your data to be relatively reassigned or altered, but not assigned.
+* The `relative` will only allow your data to be relatively reassigned or altered, but not assigned.
 
-* The `mut` keyword, alternatively written as `mutable`, will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
+* The `mutable` will allow your data to be altered in all ways. If no keyword is given, mutability is assumed by default. This is to preserve quality of life.
 
 ## 2.4 Declarations
 
