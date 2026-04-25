@@ -1,24 +1,26 @@
 # **Trillia**
-Trillia is a general-purpose computer programming language designed to be minimal, deterministic, low-level-capable, and be maximally easy to learn, to read, and to write.
-Trillia is inspired by C, Python, Go, and Lua.
+Trillia is a deterministic algorithmic computer programming language designed to be minimal, low-level-capable, and maximally easy to learn, read, and write.
+Languages like Python, Rust, Go, C, and Lua have inspired Trillia in many ways.
+If using other languages to describe Trillia, think Rust's safety mixed with Go or Lua's simplicity.
 
-The simplicity and pseudo-code-like design of Python is always easy to see in Trillia.
-Many consistent design choices have been implemented from Lua.
-The focus on parallelism, and the idea of convergent programming to make debugging easy, as well as the simplicity revolving around rapidity of onboarding makes Trillia resemble Go's design in many ways.
-The low-level nature, and absolute simplicity of C is present in Trillia, with Trillia only having about 7 core features.
-That means, if you learn a feature a day, you can learn Trillia in a week.
+The language is designed with a strong focus on simplicity, making it often resemble pseudo-code.
+Convergent programming is a strong design choice in Trillia that makes it easier to read and debug, and unifies Trillia into a common dialect.
+Without imported libraries, Trillia is extremely lightweight, making it ideal for rapid onboarding.
+There is a focus on eliminating boilerplate and inconsistencies, meaning that edge cases are rare and predictable, and programmers focus more on the actual code than they do on fighting with the language.
+Perfect parallelism is automatically prescribed to your code. The way you write your code will implicitly change the way it gets parallelized.
+Trillia is fully deterministic, safe, and minimal first, and provides escape hatches second. This ensures that you do not shoot yourself in the foot, while still giving you a great deal of power.
+The term "algorithmic language" can be used to describe Trillia, as it is incapable of unbounded loops without importing them. There is a strong focus on bounded design and minimizing complexity.
+Reactivity and pointers are core features of Trillia, automatically updating data and allowing signalling.
 
-These seven core features are namely: Variables, Control Structures, Vectors, Symbolics, Reactives, Functions, and Threads.
-
-Trillia has some features that are not seen in its 'parent' languages. Namely, reactivity is a major focal point of Trillia, and unlike Go and C, Trillia's parallel threading is fully deterministic.
-In fact, the entire language is fully deterministic aside from certain functions or imports, such as random, time and unsafe functions.
+The base language does not contain any non-deterministic functions. This means that there is no access to specific hardware used that can vary per run, and there are no functions that rely on input or randomization. Such features are quarantined within libraries, giving you the option to add those features if needed.
 
 The Implementation of Trillia is language agnostic.
-It doesn't matter whether Trillia is transpiled, compiled, or interpreted, and it also doesn't matter which languages are used to implent Trillia, as long as it behaves deterministically and is true to Trillia's blueprints.
-An ideal Trillia implementation would be a boostrapped Trillia that compiles to C or C++. This is because C is very fast, low-level, unrestrictive, and has many libraries and modules.
-Trillia should also always have full access to functions, libraries, and keywords of the language that it compiles to to ensure maximal tooling. If it compiles to a language, it should be able to take advantage of the language that it runs on.
+It doesn't matter whether Trillia is transpiled, compiled, or interpreted, and it also doesn't matter which languages are used to implement Trillia, as long as it behaves deterministically and is true to Trillia's blueprints.
+An ideal Trillia implementation would be a boostrapped Trillia that compiles to LLVM, though the existing prototype is an interpreter written in Python.
 
 **An Overview of the language:**
+
+//////////
 
 # 1. Whitespace
 
