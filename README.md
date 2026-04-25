@@ -104,7 +104,7 @@ There are four keywords that change which ways your data is allowed to be altere
 
 * The `constant` will prevent your data from being altered.
 
-* The `static` will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
+* The `pure` will only allow your data to be assigned or reassigned but not altered or relatively reassigned.
 
 * The `relative` will only allow your data to be relatively reassigned or altered, but not assigned.
 
