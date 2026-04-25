@@ -1036,14 +1036,8 @@ This is a valid statement. It defines a based on whether b and c are equal.
 Standard library uses automatic imports as needed; everything else needs manual imports
 The unsafe library is the only official library that is not given by default. It allows you to do some extra things like revive()
 
-# 16. Trillia on C or C++
-The Language on C - c_ asm_... talk abour c_ and x86_64_ and arm64_
 
-
-
-
-
-# 17. Trillia's Virtual Memory Machine
+# 16. Trillia's Virtual Address Vector (VAV)
 Trillia has a very different address system than what you are used to. To ensure full determinism, virtual memory is managed by Trillia entirely.
 Memory is indexed as a large vector. EVERYTHING IS A VECTOR DAMNIT!!!
 
