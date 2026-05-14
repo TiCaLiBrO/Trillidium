@@ -1,7 +1,7 @@
 This is the Root page. You are on the first page of the Trillia Manual.
 
 From here, there are two branches to choose from:
-[[Learning]], and [[Refining]].
+[Learning](), and [[Refining]].
 
 The Learning branch focuses on learning new things in Trillia, the philosophy, history, and key concepts that will better guide you through the language.
 It also contains tutorials. You will learn computer science concepts in general, how Trillia frames them, and the terminology needed for Trillia programmers to properly communicate their code.
