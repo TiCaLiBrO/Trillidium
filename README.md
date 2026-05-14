@@ -1,4 +1,4 @@
-# **Trillia**
+# **A Brief Overview of Trillia**
 Trillia is a deterministic algorithmic computer programming language designed to be minimal, low-level-capable, and maximally easy to learn, read, and write.
 Languages like Python, Rust, Go, C, and Lua have inspired Trillia in many ways.
 If using other languages to describe Trillia, think Rust's safety mixed with Go or Lua's simplicity.
