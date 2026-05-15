@@ -1,3 +1,5 @@
+You can enter the Trillia manual [here](https://github.com/TiCaLiBrO/Trillia/blob/main/root/sepalinfo.md). Go wherever your heart takes you.
+
 # **A Brief Overview of Trillia**
 Trillia is a deterministic algorithmic computer programming language designed to be minimal, low-level-capable, and maximally easy to learn, read, and write.
 Languages like Python, Rust, Go, C, and Lua have inspired Trillia in many ways.
