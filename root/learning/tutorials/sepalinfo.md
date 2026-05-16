@@ -31,9 +31,9 @@ If you're reading this inside the terminal, then you're inside SEPAL already.
 > [!WARNING]
 > **Do not exit SEPAL or write your code in a code editor unless instructed to or unless you know what you're doing.**
 
-## The Basics of SEPAL
+## Course 0: Navigation
 
-Course 0: [/navigation]()
+type [/navigation]() to enter the first course.
 
 Requirements:
 
