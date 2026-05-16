@@ -1,7 +1,13 @@
+# Learning
+
 The learning branch splits into [Tutorials](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/sepalinfo.md) and [[Concepts]].
+
+## The Tutorials Branch
 
 The Tutorials branch is entirely dedicated to teaching through practice. Your skills will be cultivated.
 This is the recommended branch for any beginner, and it is where beginners eventually become intermediate-level programmers.
+
+## The Concepts Branch
 
 The Concepts branch is full of pages dedicated to history, philosophy, mathematical reasoning, and linguistic reasoning behind Trillia's design.
 It also teaches what happens underneath the hood for better optimization.
