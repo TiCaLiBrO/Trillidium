@@ -4,6 +4,8 @@ This is the Root page. You are on the first page of the Trillia Manual.
 
 > [!TIP]
 > If you're entirely new to Trillia and just want to jump in, follow the first link on each page to reach the tutorials.
+>
+> If you're in SEPAL, you can type [root/learning/tutorials](https://github.com/TiCaLiBrO/Trillia/edit/main/root/sepalinfo.md) to get started
 
 From here, there are two branches to choose from:
 [Learning](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/sepalinfo.md), and [Refining](https://github.com/TiCaLiBrO/Trillia/blob/main/root/refining/sepalinfo.md).
