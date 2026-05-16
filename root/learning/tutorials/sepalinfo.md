@@ -1,3 +1,5 @@
+# Tutorials
+
 Welcome to the tutorial section. Here, you will learn everything you need to know about Trillia.
 
 The learning material is divided into Courses. Courses are composed of Chapters, and Chapters contain Lessons.
