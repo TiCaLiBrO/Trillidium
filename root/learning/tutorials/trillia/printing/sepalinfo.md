@@ -25,7 +25,7 @@ Unlike courses and chapters, lessons are numbered linearly and are expected to b
 [/new line character]
 
 ### Final Trial
-Trial
+[/vertical hello world]
 
 
 
