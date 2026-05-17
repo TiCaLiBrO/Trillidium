@@ -8,8 +8,8 @@ Don't worry; You're not trapped in here forever.
 If *forward-slash* `/` lets you go *forward*, *back-slash* `\` takes you *back*!
 
 Type `\` and hit enter to go to the previous page.
-Once you've done that, do it again to exit the first course.
-You'll have finished the navigation course, and you will know the basics of navigating the manual on your own.
+Once you've done that, do it again to exit the navigation lesson.
+You'll have finished the navigation tutorial, and you will know the basics of navigating the manual on your own.
 Congratulations!
 
 > [!NOTE]
