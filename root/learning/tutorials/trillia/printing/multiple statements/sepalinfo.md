@@ -50,6 +50,8 @@ It executes in reading order.
 >
 > If you are in SEPAL, you will not see this.
 > This code is what is required to pass the lesson.
+>
+> [next lesson](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/new%20line%20print/sepalinfo.md)
 
 
 
