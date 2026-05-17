@@ -26,7 +26,10 @@ The other chapters will always be available for you to return to.
 > [!IMPORTANT]
 > Invisible in SEPAL.
 >
->     when standard_output = "We\nEat\nRocks" and length(lines_of_code) = 1
+>     when standard_output = "We\nEat\nRocks";;
+>     and length(lines_of_code) = 1;;
+>     and source_code has "print";;
+>     and source_code not has "printn"
 >     try
 >         run_lesson
 >     catch
