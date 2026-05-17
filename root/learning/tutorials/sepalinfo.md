@@ -45,7 +45,13 @@ Description:
 	The course only teaches you the base language and printing.
 	By the end of this course, you will have a full understanding of everything included within Trillia.*
 
-
+> [!IMPORTANT]
+> There are more than just two courses.
+> Beyond the Trillia course, there are courses for the libraries.
+> Math, SEPAL, Strings, Random, Time, Input, Output, Loops, Unsafe, Floats, and Quantum are some examples of libraries.
+> Those other libraries will not be provided here until everything is written in this manual for base Trillia.
+>
+> Stay tuned.
 
 
 
