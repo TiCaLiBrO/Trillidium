@@ -41,12 +41,12 @@ When you're ready to submit your code, just hit enter twice.
 You should notice that your program runs from top to bottom.
 It executes in reading order.
 
-> [!NOTE]
+> [!IMPORTANT]
 > The passing condition is based on the given code, not the printed output.
 >
-> `print("I am learning ")`
->
-> `print("Trillia")`
+>     when history has [source_code("print("I am learning ")"), source_code("print("Trillia")")]
+>     then
+>         lesson_passed = True
 >
 > If you are in SEPAL, you will not see this.
 > This code is what is required to pass the lesson.
