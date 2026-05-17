@@ -18,7 +18,7 @@ The courses are structured to be flexible, allowing students to learn things tha
 > [!TIP]
 > If you see a chapter that interests you, learn the prerequisite chapters and go straight for it. Learn what you want when you want.
 
-## Chapter 1 Printing
+## Chapter 1: Printing
 
 [/printing](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/sepalinfo.md)
 
@@ -61,11 +61,18 @@ New Vocabulary:
 
 ////////////////////////////////////////////////////////////////////////////
 
-[[Introduction to Trillia Chapter 2 Variables]] (7 lessons thus far)
+## Chapter 2: Variables
+
+[/variables]
+
 Requirements:
-- Chapter 1
+
+- Chapter 1: Printing
+
 New Vocabulary:
-- `_=_`, `,`
+
+- `__=__`
+- `,`
 
 [[Introduction to Trillia Chapter 3 Comments]] (3 lessons thus far)
 Requirements:
