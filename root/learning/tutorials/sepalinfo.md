@@ -21,7 +21,7 @@ The courses are numbered for a linear experience, and they are also numbered to 
 You are not expected to, and should not adhere strictly to the numbering, but you should learn all of the requirements before entering a course.
 The courses are structured to be flexible, letting students learn things that interest them early on.
 
-## Course 0: Navigation
+## Entry Tutorial: Navigation
 
 type [/navigation](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/navigation/sepalinfo.md) to enter the first course.
 
