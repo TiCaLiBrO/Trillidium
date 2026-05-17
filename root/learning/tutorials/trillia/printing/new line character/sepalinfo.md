@@ -14,7 +14,7 @@ Using only the `print` function and one line of code, print these three lines of
 
     We
     Eat
-    Rocks
+    Rocks!
 
 > [!TIP]
 > When you use `\n`, you don't need a space between words.
@@ -26,7 +26,7 @@ The other chapters will always be available for you to return to.
 > [!IMPORTANT]
 > Invisible in SEPAL.
 >
->     when standard_output = "We\nEat\nRocks";;
+>     when standard_output = "We\nEat\nRocks!";;
 >     and length(lines_of_code) = 1;;
 >     and source_code has "print";;
 >     and source_code not has "printn"
