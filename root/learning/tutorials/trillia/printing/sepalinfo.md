@@ -25,7 +25,7 @@ Unlike courses and chapters, lessons are numbered linearly and are expected to b
 [/new line character](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/new%20line%20character/sepalinfo.md)
 
 ### Final Trial
-[/vertical hello world]
+[/vertical hello world](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/vertical%20hello%20world/sepalinfo.md)
 
 
 
