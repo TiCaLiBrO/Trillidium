@@ -1,6 +1,6 @@
 # Course 0: Navigation
 
-In this course, you will learn the basics of efficiently navigating the manual!
+In this tutorial, you will learn the basics of efficiently navigating the manual!
 
 To get here, you used "/navigation" to enter this course.
 When you start a command with a *forward* slash `/`, it brings you *forward* into the page with the same name that you wrote beside it.
