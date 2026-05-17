@@ -18,12 +18,6 @@ The courses are structured to be flexible, allowing students to learn things tha
 > [!TIP]
 > If you see a chapter that interests you, learn the prerequisite chapters and go straight for it. Learn what you want when you want.
 
-Before you begin, these lessons are mostly intended to be done in SEPAL, not Trillia proper.
-If you're reading this inside the terminal, then you're inside SEPAL already.
-
-> [!WARNING]
-> **Do not exit SEPAL or write your code in a code editor unless instructed to or unless you know what you're doing.**
-
 ## Chapter 1 Printing
 
 [/printing](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/sepalinfo.md)
@@ -44,7 +38,6 @@ New Vocabulary:
 - print()
 - printn()
 
-////(4 lessons thus far)
 
 
 
