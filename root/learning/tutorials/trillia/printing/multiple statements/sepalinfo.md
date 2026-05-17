@@ -20,7 +20,7 @@ If we put some other text in there, `print` would print that instead.
 The `"` quotation marks are needed because it's difficult for people and computers sometimes to tell if something is supposed to be text or code.
 So we always use quotation marks when something is supposed to be text.
 
-### The Lesson
+## The Lesson
 
 In the previous lesson you wrote one line of code.
 Now let's write two.
