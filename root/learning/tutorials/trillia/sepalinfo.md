@@ -26,14 +26,18 @@ If you're reading this inside the terminal, then you're inside SEPAL already.
 
 ## Chapter 1 Printing
 
-[/printing]()
+[/printing](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/sepalinfo.md)
 
 Requirements:
 
 - None
 
 Chapter Summary:
-	*This chapter is the very first chapter. Here, you will learn the most important skill that you will ever learn as a developer: printing. Why is it so important? Because it's the main way that programmers can learn about what's actually happening in their code if they make a mistake. It's your gateway to see inside the computer.*
+	*This chapter is the very first chapter.
+	Here, you will learn the most important skill that you will ever learn as a developer: printing.
+	Why is it so important?
+	Because it's the main way that programmers can learn about what's actually happening in their code if they make a mistake.
+	It's the gateway to see inside your computer.*
 
 New Vocabulary:
 
