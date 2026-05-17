@@ -42,7 +42,7 @@ New Vocabulary:
 
 ## Chapter 2: Variables
 
-[/variables]
+[/variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/sepalinfo.md)
 
 Requirements:
 
@@ -52,6 +52,7 @@ New Vocabulary:
 
 - `__=__`
 - `,`
+- numbers
 
 
 
