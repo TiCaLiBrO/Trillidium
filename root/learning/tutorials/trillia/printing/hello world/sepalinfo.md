@@ -23,8 +23,8 @@ Type this text into the terminal: `print("Hello World!")`
 Make sure that your text matches the one in the tutorial.
 
 Once you've written that, hit enter ***twice*** to run the code.
-*Hitting enter once will only create a newline*.
-Hitting enter on an empty line in SEPAL runs your code.
+Hitting enter once will only create a newline.
+*Hitting enter on an empty line in SEPAL runs your code.*
 
 > [!NOTE]
 > This message is not visible inside SEPAL.
