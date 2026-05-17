@@ -1,7 +1,7 @@
 # Chapter 2: Variables
 
 ### Lesson 1
-[/undefined variables]()
+[/undefined variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/undefined%20variables/sepalinfo.md)
 
 Undefined: A
 
