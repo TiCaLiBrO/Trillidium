@@ -38,7 +38,7 @@ Description:
 
 Requirements:
 
-- Entry Tutorial
+- Entry Tutorial: Navigation
 
 Description:
 	*This course will teach you all of the fundamentals of Trillia.
