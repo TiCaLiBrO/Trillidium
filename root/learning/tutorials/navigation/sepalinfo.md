@@ -17,6 +17,6 @@ You will see a link to a hidden page.
 Once you see it, type `/name`, replacing `name` with the page's name, and hit enter to enter the page.
 
 > [!NOTE]
-> If you're not in SEPAL, you can see this link [/backslash](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/navigation/backslash/sepalinfo.md).
+> If you're not in SEPAL, you can see this link: [/backslash](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/navigation/backslash/sepalinfo.md).
 > 
 > If you're in SEPAL, you will see the name `backslash` after you type `/`.
