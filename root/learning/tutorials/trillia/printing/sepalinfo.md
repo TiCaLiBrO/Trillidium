@@ -5,9 +5,17 @@ By the end of this chapter, you'll be able to print text and make new lines.
 
 ## Lessons
 
+> [!NOTE]
+> You can write `/` followed by a page name, including names with spaces.
+>
+> `/hello world` is a valid page entry.
+
 1 print
-[/print]()
-[Greet Trillia]
+[/hello world]()
+
+//////////////////////
+
+
 
 2 multiple statements
 [Multiple Statements]
