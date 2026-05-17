@@ -19,7 +19,7 @@ Unlike courses and chapters, lessons are numbered linearly and are expected to b
 [/multiple statements]()
 
 ### Lesson 3
-[/new line print]
+[/new line print](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/printing/new%20line%20print/sepalinfo.md)
 
 ### Lesson 4
 [/new line character]
