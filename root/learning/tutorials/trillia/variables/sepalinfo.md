@@ -7,7 +7,6 @@ Variables are the primary way to store data, so they're very important.
 [/undefined variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/undefined%20variables/sepalinfo.md)
 
 You will learn what variables are and what their default value is.
-The
 
 ## Lesson 2
 [/variable assignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variable%20assignment/sepalinfo.md)
@@ -27,6 +26,8 @@ Demonstrating non-reactivity: A = 10; B = A; A = 20
 
 ## Lesson 6
 [/cardinal assignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/cardinal%20assignment/sepalinfo.md)
+
+You will learn about cardinal assignment, making your code simpler to write, easier to read, and faster to execute.
 
 ## Lesson 7
 [Chain Assignment]
