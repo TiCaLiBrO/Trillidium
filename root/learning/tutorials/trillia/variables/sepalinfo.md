@@ -23,7 +23,7 @@ Reassignment: A = 10; A = 20
 Demonstrating non-reactivity: A = 10; B = A; A = 20
 
 ### Lesson 6
-[/cardinal assignment]
+[/cardinal assignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/cardinal%20assignment/sepalinfo.md)
 
 Cardinal (Swap) Assignment: A, B = B, A
 
