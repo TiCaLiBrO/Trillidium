@@ -28,6 +28,16 @@ If you were to type `print(Hello World!)` without quotation marks instead, it wo
 We didn't define the variable `number` in this lesson, so its value by default is `Undefined`.
 Everything in Trillia is Undefined by default.
 
+> [!IMPORTANT]
+> Invisible within Sepal.
+>
+>     when number = Undefined
+>     try sepal_execution
+>     catch lesson_passed = True
+>
+> [next lesson](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variable%20assignment/sepalinfo.md)
+
+
 
 
 
