@@ -14,7 +14,7 @@ You will learn: What variables are and what their default values are.
 You will learn: How to assign a value to a variable.
 
 > [!CAUTION]
-> This page is currently under rework.
+> The page beyond this point is currently under rework.
 > Use this resource at your own risk.
 
 ## Lesson 3
