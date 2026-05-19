@@ -29,7 +29,7 @@ You will learn: How to use variables to assign values to other variables.
 You will learn: How to reassign variables once they have already been given a value.
 
 > [!CAUTION]
-> The page beyond this point is currently under rework.
+> Beyond this point is currently under rework.
 > Use this resource at your own risk.
 
 ## Lesson 5
