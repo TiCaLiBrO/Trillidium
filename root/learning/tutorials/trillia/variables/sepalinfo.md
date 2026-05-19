@@ -17,27 +17,27 @@ You will learn: How to assign a value to a variable.
 > The page beyond this point is currently under rework.
 > Use this resource at your own risk.
 
-## Lesson 3
+## Literature 1
 [/naming](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/naming/sepalinfo.md)
 
-You will learn: The rules for naming variables and some conventions.
+You will read: The rules for naming variables and some conventions.
 
-## Lesson 4
+## Lesson 3
 [/variables assigning other variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variables%20assigning%20other%20variables/sepalinfo.md)
 
 You will learn: How to use variables to assign values to other variables.
 
-## Lesson 5
+## Lesson 4
 [/reassignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/reassignment/sepalinfo.md)
 
 You will learn: How to reassign variables once they have already been given a value.
 
-## Lesson 6
+## Lesson 5
 [/snapshot assignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/snapshot%20assignment/sepalinfo.md)
 
 You will learn: How assignments are only reflective of the moment that they happen.
 
-## Lesson 7
+## Lesson 6
 [/chain assignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/chain%20assignment/sepalinfo.md)
 
 You will learn: The precedence and propagation of the assignment operator, as well as its futility when right-handed.
@@ -47,7 +47,7 @@ You will learn: The precedence and propagation of the assignment operator, as we
 
 You will test: Your ability to swap variables.
 
-## Lesson 8
+## Lesson 7
 [cardinal assignment 1]
 
 You will learn: The basics of Cardinal assignment.
@@ -56,12 +56,12 @@ Cardinal assignment, making your code simpler to write, easier to read, and fast
 
 (a, b, c = d, d, d)
 
-## Lesson 9
+## Lesson 8
 [cardinal assignment 2]
 
 (a, b, c = d, e, f)
 
-## Lesson 10
+## Lesson 9
 [/cardinal assignment 3](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/cardinal%20assignment/sepalinfo.md)
 (a, b, = b, a)
 
