@@ -19,8 +19,10 @@ Instead, `print` only sees what value `number` holds.
 That's why earlier it printed `Undefined`, because `number` didn't hold any value until you gave it one.
 
 > [!IMPORTANT]
-> Invisible within SEPAL
+> Invisible within SEPAL.
 >
 >     when number = 10
 >     try sepal_execution
 >     catch lesson_pass = True
+>
+> [next lesson](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variables%20assigning%20other%20variables/sepalinfo.md)
