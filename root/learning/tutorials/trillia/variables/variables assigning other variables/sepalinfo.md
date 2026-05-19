@@ -27,5 +27,7 @@ Checklist
 >     and standard_output = "5"
 >     try sepal_execution
 >     catch lesson_passed = True
+>
+> [next lesson](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/reassignment/sepalinfo.md)
 
 
