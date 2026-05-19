@@ -18,14 +18,14 @@ You will learn: How to assign a value to a variable.
 
 You will read: The rules for naming variables and some conventions.
 
-> [!CAUTION]
-> The page beyond this point is currently under rework.
-> Use this resource at your own risk.
-
 ## Lesson 3
 [/variables assigning other variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variables%20assigning%20other%20variables/sepalinfo.md)
 
 You will learn: How to use variables to assign values to other variables.
+
+> [!CAUTION]
+> The page beyond this point is currently under rework.
+> Use this resource at your own risk.
 
 ## Lesson 4
 [/reassignment](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/reassignment/sepalinfo.md)
