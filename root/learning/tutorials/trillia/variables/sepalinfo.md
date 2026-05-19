@@ -14,8 +14,9 @@ You will learn: What variables are and what their default values are.
 You will learn: How to assign a value to a variable.
 
 ## Lesson 3
+[/naming]
 
-
+You will learn: The rules for naming variables and some conventions.
 
 ## Lesson 4
 [/variables assigning other variables](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/tutorials/trillia/variables/variables%20assigning%20other%20variables/sepalinfo.md)
