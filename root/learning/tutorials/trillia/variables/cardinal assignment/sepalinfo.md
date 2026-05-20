@@ -1,4 +1,4 @@
-# Cardinal Assignment 3
+# Cardinal Assignment
 
 ## Prelude
 
