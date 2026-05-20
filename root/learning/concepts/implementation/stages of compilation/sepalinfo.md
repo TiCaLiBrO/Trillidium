@@ -2,7 +2,7 @@ The stages of compilation can be broken down into seven.
 
 [Lexing Phase](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/concepts/implementation/stages%20of%20compilation/lexing%20phase/sepalinfo.md)
 
-[Tagging Phase]()
+[Tagging Phase](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/concepts/implementation/stages%20of%20compilation/tagging%20phase/sepalinfo.md)
 
 [Borrow Checker Phase]()
 
