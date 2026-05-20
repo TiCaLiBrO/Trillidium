@@ -6,7 +6,7 @@ The stages of compilation can be broken down into seven.
 
 [Borrow Checker Phase](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/concepts/implementation/stages%20of%20compilation/borrow%20checker%20phase/sepalinfo.md)
 
-[Parallelization Phase]()
+[Parallelization Phase](https://github.com/TiCaLiBrO/Trillia/blob/main/root/learning/concepts/implementation/stages%20of%20compilation/parallelization%20phase/sepalinfo.md)
 
 [Presolving Phase]()
 
