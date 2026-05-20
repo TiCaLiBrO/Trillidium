@@ -1,3 +1,5 @@
+# Concepts
+
 This is the Concepts branch. From here, there are three new branches:
 [[Philosophy]], [[Implementation]], and [[Stories]].
 
